@@ -1,0 +1,134 @@
+.MacronutrientGraph {
+    background: $gray-color;
+    height: 8rem;
+    box-shadow: 0 0 5px gray;
+}
+
+.MacronutrientGraph__container {
+    display: grid;
+    grid-template-rows: auto;
+    grid-gap: 4px;
+    height: 7rem;
+    padding: 0.5rem 6px;
+}
+
+.MacronutrientGraph__row {
+    display: grid;
+    grid-template-columns: 20% 20% 60%;
+    border-radius: $border-radius;
+    box-shadow: 1px 1px gainsboro;
+}
+
+.MacronutrientGraph__rowNutrient,
+.MacronutrientGraph__rowTotal {
+    position: relative;
+    border-right: 1px solid lightgray;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+}
+
+.MacronutrientGraph__rowNutrient {
+    background: $light-color;
+}
+
+.MacronutrientGraph__rowTotal {
+    background: white;
+}
+
+.MacronutrientGraph__rowTotal {
+    overflow: hidden;
+}
+
+.MacronutrientGraph__rowNutrientLabel,
+.MacronutrientGraph__rowTotalAmount {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    letter-spacing: 1px;
+    color: gray;
+}
+
+.MacronutrientGraph__rowNutrientLabel {
+    text-transform: uppercase;
+}
+
+.MacronutrientGraph__rowProgressBar {
+    position: relative;
+    background: rgba(75, 75, 75, 0.1);
+    width: 100%;
+}
+
+
+.MacronutrientGraph__rowProgressBarFill--cals,
+.MacronutrientGraph__rowProgressBarFill--carbs,
+.MacronutrientGraph__rowProgressBarFill--prot,
+.MacronutrientGraph__rowProgressBarFill--fat {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    box-shadow: 1px 1px gray;
+    -webkit-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+.MacronutrientGraph__rowProgressBarFill--cals {
+    background: $cals-color;
+}
+
+.MacronutrientGraph__rowProgressBarFill--carbs {
+    background: $carbs-color;
+}
+
+.MacronutrientGraph__rowProgressBarFill--prot {
+    background: $prot-color;
+}
+
+.MacronutrientGraph__rowProgressBarFill--fat {
+    background: $fat-color;
+}
+
+.MacronutrientGraph__rowProgressBarGoal--cals,
+.MacronutrientGraph__rowProgressBarGoal--carbs,
+.MacronutrientGraph__rowProgressBarGoal--prot,
+.MacronutrientGraph__rowProgressBarGoal--fat {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    -webkit-transition: width 0.25s ease-in-out;
+    transition: width 0.25s ease-in-out;
+}
+
+.MacronutrientGraph__rowProgressBarGoal--cals {
+    background: $cals-color-alpha;
+    width: 100%;
+}
+
+.MacronutrientGraph__rowProgressBarGoal--carbs {
+    background: $carbs-color-alpha;
+}
+
+.MacronutrientGraph__rowProgressBarGoal--prot {
+    background: $prot-color-alpha;
+}
+
+.MacronutrientGraph__rowProgressBarGoal--fat {
+    background: $fat-color-alpha;
+}
+
+.MacronutrientGraph__rowProgressBarGoalMarker {
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: white;
+    box-shadow: 1px 0 gray;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    -webkit-transition: left 0.25s ease-in-out;
+    transition: left 0.25s ease-in-out;
+    transform: translateX(-2px);
+}

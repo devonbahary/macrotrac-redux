@@ -1,16 +1,19 @@
-* {
-    font-family: Helvetica, sans-serif;
-}
-
-.active-link {
-    font-weight: bold;
-    color: blue;
-}
-
-.error {
-    color: red;
-}
-
-.confirmed {
-    color: green;
-}
+@import './base/settings.scss';
+@import './base/base.scss';
+@import './components/_clear-meals-button.scss';
+@import './components/_food-form.scss';
+@import './components/_food-item.scss';
+@import './components/_food-item-tool.scss';
+@import './components/_food-item-tools.scss';
+@import './components/_foods-list.scss';
+@import './components/_header.scss';
+@import './components/_header-nav-button.scss';
+@import './components/_input-number.scss';
+@import './components/_input-row.scss';
+@import './components/_large-button.scss';
+@import './components/_macronutrient-graph.scss';
+@import './components/_main-nav.scss';
+@import './components/_notification.scss';
+@import './components/_search-bar.scss';
+@import './components/_time.scss';
+@import './components/_user-form.scss';

@@ -1,24 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions/user';
+import Notification from '../Notification';
 import UserForm from './UserForm';
 
 class UserPage extends React.Component {
     state = {
-      updatedUser: false
+      updatedUser: false,
+      err: ''
     };
 
+    onError = () => {
+        this.setState(() => ({ err: 'Sum of ratios must be 100%.' }));
+    }
+
+    onUserSave = (user) => {
+        this.setState(() => ({
+          err: '',
+          updatedUser: true
+        }));
+        this.props.dispatch(updateUser(user));
+    }
+
     render() {
+        const notification = this.state.err ? this.state.err : (
+          this.state.updatedUser ? (
+            'Saved user settings.'
+          ) : (
+            'Adjust your personal goals.'
+          )
+        );
+
         return (
             <div>
-                <h3>Your Settings</h3>
-                {this.state.updatedUser && <p className="confirmed">Saved user settings.</p>}
+                <Notification notification={notification} error={!!this.state.err} success={this.state.updatedUser} />
                 <UserForm
                   user={this.props.user}
-                  onSubmit={(user) => {
-                    this.props.dispatch(updateUser(user));
-                    this.setState(() => ({ updatedUser: true }));
-                  }}
+                  onSubmit={this.onUserSave}
+                  onError={this.onError}
                 />
             </div>
         );

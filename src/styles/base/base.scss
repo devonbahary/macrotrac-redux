@@ -1,0 +1,11 @@
+* {
+    font-family: Helvetica, sans-serif;
+}
+
+.content-window {
+    background: $gray-color;
+    position: absolute;
+    top: 3rem; right: 0; bottom: 3rem; left: 0;
+    overflow-y: scroll;
+    padding: 6px 0;
+}

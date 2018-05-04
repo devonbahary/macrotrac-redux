@@ -1,0 +1,36 @@
+.InputNumber {
+    display: grid;
+    grid-template-columns: 4rem 1fr 4rem;
+}
+
+.InputNumber__button--decrement,
+.InputNumber__button--increment {
+    text-align: center;
+    padding: 1rem 0;
+    line-height: 2rem;
+    font-size: 1.2rem;
+    box-shadow: 1px 1px gray;
+    color: gray;
+}
+
+.InputNumber__button--decrement {
+    background: $gray-color;
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+}
+
+.InputNumber__button--increment {
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+}
+
+.InputNumber input[type="number"] {
+    text-align: center;
+    border-radius: 0;
+    box-shadow: 0 1px gray;
+    width: 100%;
+}
+
+.InputNumber input:focus {
+    box-shadow: 0 0 5px $theme-color;
+}

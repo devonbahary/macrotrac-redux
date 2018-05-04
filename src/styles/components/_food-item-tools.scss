@@ -1,0 +1,26 @@
+.FoodItemTools--one,
+.FoodItemTools--two {
+    background: $gray-color;
+    padding: 0.75rem 12px;
+}
+
+.FoodItemTools--two {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 12px;
+}
+
+.FoodItemTools__servingSizeInputRow {
+    font-size: 1.2rem;
+    background: $light-color;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    padding: 0.5rem 6px;
+    box-shadow: 0 1px 5px gray;
+    margin-bottom: 0.5rem;
+}
+
+.FoodItemTools__servingSizeInputLabel {
+    line-height: 4rem;
+    opacity: 0.8;
+}

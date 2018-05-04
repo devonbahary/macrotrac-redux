@@ -1,0 +1,38 @@
+.MainNav {
+    background: $light-color;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: fixed;
+    right: 0; bottom: 0; left: 0;
+    height: 3rem;
+    box-shadow: 0 0 5px black;
+}
+
+.MainNav__link {
+    position: relative;
+    border-right: 1px solid lightgray;
+}
+
+.MainNav__link:last-of-type {
+    border-right: none;
+}
+
+.MainNav__linkIcon {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.4rem;
+    color: gray;
+    text-shadow: 2px 2px white;
+}
+
+.MainNav__link.active-link {
+    background: $theme-color;
+}
+
+.MainNav__link.active-link {
+    .MainNav__linkIcon {
+        color: white;
+        text-shadow: 2px 2px gray;
+    }
+}

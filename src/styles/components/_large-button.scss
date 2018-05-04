@@ -1,0 +1,21 @@
+.LargeButton,
+.LargeButton--submit,
+.LargeButton--warning,
+.LargeButton--disabled {
+    height: 4rem;
+    box-shadow: 0 1px 5px gray;
+    margin: 0.5rem 0;
+    width: 100%;
+    color: white;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+
+.LargeButton--submit {
+    background: $theme-color;
+    margin-top: 1rem;
+}
+
+.LargeButton--warning {
+    background: $error-color;
+}

@@ -1,0 +1,110 @@
+.FoodItemTool {
+    background: $light-color;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    color: gray;
+    box-shadow: 0 0 1px gray;
+    border-radius: $border-radius-lg;
+    height: 2.5rem;
+    padding: 0.25rem 12px;
+    box-sizing: border-box;
+    text-decoration: none;
+    -webkit-transition: background-color 0.25s ease-out;
+    transition: background-color 0.25s ease-out;
+}
+
+.FoodItemTool.active {
+    background: $theme-color;
+    color: white;
+
+    .remove-icon {
+        animation: wiggle-hard 0.5s ease-out;
+    }
+
+    .clear-icon {
+        animation: wiggle-hard 0.5s ease-out;
+    }
+}
+
+.FoodItemTool__icon {
+    font-size: 1.8rem;
+    line-height: 1rem;
+    text-align: center;
+
+    .edit-icon {
+        animation: rotate 1s ease-out;
+    }
+
+    .ion-trash-a {
+        animation: wiggle 1s ease-out;
+    }
+
+    .add-icon {
+        animation: wiggle 1s ease-out;
+    }
+
+    .cancel-clear-icon {
+        font-size: 1.4rem;
+        line-height: 2.1rem;
+    }
+}
+
+.FoodItemTool__button {
+    font-size: 1.2rem;
+    line-height: 2rem;
+    text-align: center;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(-30deg);
+    }
+
+    25% {
+        transform: rotate(30deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(15deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes wiggle-hard {
+    0% {
+        transform: rotate(-30deg);
+    }
+
+    25% {
+        transform: rotate(30deg);
+    }
+
+    50% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(15deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}

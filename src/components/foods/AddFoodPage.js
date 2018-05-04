@@ -11,7 +11,6 @@ const AddFoodPage = (props) => {
 
     return (
         <div>
-            <h3>Add Food</h3>
             <FoodForm onSubmit={onSubmit} />
         </div>
     );
