@@ -13,7 +13,7 @@ export default (prevState = initialFoodsState, action) => {
             items = localStorage.getItem('foods');
             return {
               items: items ? JSON.parse(items) : prevState.items,
-              notification: `Found ${JSON.parse(items).length} foods.`
+              notification: items ? `Found ${JSON.parse(items).length} foods.` : 'No food items found.'
             };
         case 'ADD_FOOD':
             items = [ ...prevState.items, { ...action.food, id: uuid() } ];
