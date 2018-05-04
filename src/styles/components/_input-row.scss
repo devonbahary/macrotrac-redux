@@ -1,0 +1,53 @@
+.InputRow,
+.InputRow--text {
+    background: $light-color;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: 4rem;
+    padding: 0.5rem 6px;
+    box-shadow: 0 1px 5px gray;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.InputRow--text {
+    grid-template-columns: 1fr;
+}
+
+.InputRow.--cals {
+    box-shadow: 0 1px 1px $cals-color;
+}
+.InputRow.--carbs {
+    box-shadow: 0 1px 1px $carbs-color;
+}
+
+.InputRow.--prot {
+    box-shadow: 0 1px 1px $prot-color;
+}
+
+.InputRow.--fat {
+    box-shadow: 0 1px 1px $fat-color;
+}
+
+.InputRow input,
+.InputRow--text input,
+.InputRow select {
+    background: white;
+    border: none;
+    border-radius: $border-radius;
+    outline: none;
+    padding-left: 6px;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+
+.InputRow input:focus,
+.InputRow--text input:focus,
+.InputRow select:focus {
+    box-shadow: 0 0 5px $theme-color;
+}
+
+.InputRow__label {
+    line-height: 4rem;
+    opacity: 0.8;
+}

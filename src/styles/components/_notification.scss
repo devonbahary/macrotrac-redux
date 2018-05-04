@@ -1,0 +1,17 @@
+.Notification {
+    background: $light-color;
+    height: 4rem;
+    padding-left: 12px;
+    line-height: 4rem;
+    font-size: 1.2rem;
+    box-shadow: 0 0 5px gray;
+    margin-bottom: 1rem;
+}
+
+.Notification .error {
+    color: $error-color;
+}
+
+.Notification .success {
+    color: $success-color;
+}

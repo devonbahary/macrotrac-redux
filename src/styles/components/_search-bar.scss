@@ -1,0 +1,47 @@
+.SearchBar {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 3rem;
+    padding: 0.5rem 6px 0.5rem 6px;
+}
+
+.SearchBar input {
+    background: $light-color;
+    height: 3rem;
+    padding: 0 12px 0 36px;
+    font-size: 1.2rem;
+    border-radius: $border-radius-lg;
+    border: none;
+    box-shadow: 0 0 5px gray;
+    -webkit-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+}
+
+.SearchBar input:focus {
+    outline: none;
+    box-shadow: 0 0 5px $theme-color;
+}
+
+.SearchBar input:focus + .search-icon {
+    opacity: 0.6;
+}
+
+.SearchBar .search-icon,
+.SearchBar .reset-search-icon {
+    position: absolute;
+    top: 2rem;
+    transform: translateY(-50%);
+    opacity: 0.4;
+    font-size: 1.2rem;
+    -webkit-transition: opacity 0.25s ease-in-out;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.SearchBar .search-icon {
+    left: 18px;
+}
+
+.SearchBar .reset-search-icon {
+    right: 18px;
+}

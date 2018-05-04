@@ -1,0 +1,17 @@
+.ClearMealsButton {
+    position: relative;
+    // left: calc(60% - 6px);
+    float: right;
+    margin-right: 6px;
+    height: 4rem;
+    width: 40%;
+    -webkit-transition: width 0.25s ease-in-out;
+    transition: width 0.25s ease-in-out;
+}
+
+.ClearMealsButton.active {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 12px;
+    width: 80%;
+}

@@ -1,15 +1,40 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
-const Header = () => (
-    <header>
-        <h1>Macrotrac (w/Redux)</h1>
-        <NavLink to="/" exact activeClassName="active-link"> Home </NavLink>
-        <NavLink to="/meals" exact activeClassName="active-link"> Meals </NavLink>
-        <NavLink to="/foods" exact activeClassName="active-link"> Foods </NavLink>
-        <NavLink to="/foods/create" exact activeClassName="active-link"> Add Food </NavLink>
-        <NavLink to="/user" exact activeClassName="active-link"> User </NavLink>
-    </header>
-);
+const Header = (props) => {
+    let title;
+    if (props.location.location.pathname.startsWith('/foods/edit')) {
+        title = 'Edit Food';
+    } else {
+        switch (props.location.location.pathname) {
+            case '/meals':
+                title = 'Today';
+                break;
+            case '/meals/create':
+                title = 'Add Meal';
+                break;
+            case '/foods':
+                title = 'Foods';
+                break;
+            case '/foods/create':
+                title = 'Add Food';
+                break;
+            case '/user':
+                title = 'Settings';
+                break;
+            default:
+                title = 'Macrotrac';
+        }
+    }
+
+
+    return (
+        <header className="Header">
+            <span className="Header__text">
+              {title}
+            </span>
+        </header>
+    )
+
+};
 
 export default Header;

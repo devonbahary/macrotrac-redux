@@ -1,13 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { removeFood } from '../../actions/foods';
+import { addMeal } from '../../actions/meals';
 import FoodsList from '../FoodsList';
-import Notification from '../Notification';
-import HeaderNavButton from '../HeaderNavButton';
 import SearchBar from '../SearchBar';
 
-class FoodsPage extends React.Component {
+class AddMealPage extends React.Component {
     state = {
       search: ''
     };
@@ -21,15 +18,15 @@ class FoodsPage extends React.Component {
         this.setState(() => ({ search: ''}));
     };
 
-    removeFood = (food) => {
-        this.props.dispatch(removeFood(food));
+    addMeal = (meal) => {
+        this.props.dispatch(addMeal(meal));
+        this.props.history.push('/meals');
     };
 
     render() {
         return (
             <div>
-                <HeaderNavButton to={'/foods/create'} />
-                <Notification notification={this.props.notification} />
+                <h3>Add Meal</h3>
                 <SearchBar
                   value={this.state.search}
                   onChange={this.onSearchChange}
@@ -37,17 +34,15 @@ class FoodsPage extends React.Component {
                 />
                 <FoodsList
                   foods={this.props.foods.filter(food => food.name.match(this.state.search))}
-                  canEdit={true}
-                  onRemove={this.removeFood}
+                  addMeal={this.addMeal}
                 />
             </div>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state) => ({
-  foods: state.foods.items,
-  notification: state.foods.notification
+  foods: state.foods.items
 });
 
-export default connect(mapStateToProps)(FoodsPage);
+export default connect(mapStateToProps)(AddMealPage);

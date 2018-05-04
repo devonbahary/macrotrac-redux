@@ -1,0 +1,77 @@
+.FoodItem,
+.FoodItem--noneFound {
+    height: 4rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    -webkit-transition: height 0.25s ease-out;
+    transition: height 0.25s ease-out;
+    box-shadow: 0 1px 5px gray;
+}
+
+.FoodItem.active {
+    height: 16rem;
+    box-shadow: 0 0 5px $theme-color;
+
+    .FoodItem__headerDescriptionName {
+        color: $theme-color;
+    }
+}
+
+.FoodItem.add-meal {
+    height: 22rem;
+}
+
+
+.FoodItem__header {
+    background: $light-color;
+    display: grid;
+    grid-template-columns: 75% 25%;
+    height: 4rem;
+    box-shadow: 0 0 1px gray;
+}
+
+.FoodItem--noneFound {
+    .FoodItem__header {
+        grid-template-columns: 20% 80%;
+    }
+}
+
+.FoodItem__headerDescription {
+    padding: 0.5rem 0 0.5rem 6px;
+    border-right: 1px solid lightgray;
+}
+
+.FoodItem__headerDescriptionName {
+    font-size: 1.4rem;
+    height: 1.8rem;
+}
+
+.FoodItem__headerDescriptionServings {
+    font-size: 1rem;
+    height: 1.2rem;
+    padding-left: 6px;
+    opacity: 0.6;
+}
+
+.FoodItem__headerCalories {
+    line-height: 4rem;
+    text-align: center;
+}
+
+.FoodItem__headerIcon {
+    line-height: 4rem;
+    color: $theme-color;
+    text-align: center;
+    font-size: 1.4rem;
+    border-right: 1px solid lightgray;
+}
+
+.FoodItem__headerNoneFound {
+    line-height: 4rem;
+    font-size: 1.2rem;
+    padding-left: 12px;
+}
+
+.FoodItem__body {
+
+}

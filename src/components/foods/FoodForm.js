@@ -1,5 +1,7 @@
 import React from 'react';
-import './FoodForm.css';
+import InputRow from '../InputRow';
+import LargeButton from '../LargeButton';
+import Notification from '../Notification';
 
 class FoodForm extends React.Component {
     servingUnits = [
@@ -44,18 +46,38 @@ class FoodForm extends React.Component {
         if (servingSize > 0) {
             this.setState(() => ({ servingSize }));
         }
-    }
+    };
+
+    onServingSizeDecrement = () => {
+        if (this.state.servingSize > 1) {
+            this.setState((prevState) => ({ servingSize: prevState.servingSize - 1 }));
+        }
+    };
+
+    onServingSizeIncrement = () => {
+        this.setState((prevState) => ({ servingSize: prevState.servingSize + 1 }));
+    };
 
     onServingUnitChange = (e) => {
         const servingUnit = Number(e.target.value);
         this.setState(() => ({ servingUnit }));
-    }
+    };
 
     onCarbsChange = (e) => {
         const carbs = Number(e.target.value);
         if (carbs >= 0) {
             this.setState(() => ({ carbs }));
         }
+    };
+
+    onCarbsDecrement = () => {
+        if (this.state.carbs > 0) {
+            this.setState((prevState) => ({ carbs: prevState.carbs - 1 }));
+        }
+    };
+
+    onCarbsIncrement = () => {
+        this.setState((prevState) => ({ carbs: prevState.carbs + 1 }));
     };
 
     onProtChange = (e) => {
@@ -65,11 +87,31 @@ class FoodForm extends React.Component {
         }
     };
 
+    onProtDecrement = () => {
+        if (this.state.prot > 0) {
+            this.setState((prevState) => ({ prot: prevState.prot - 1 }));
+        }
+    };
+
+    onProtIncrement = () => {
+        this.setState((prevState) => ({ prot: prevState.prot + 1 }));
+    };
+
     onFatChange = (e) => {
         const fat = Number(e.target.value);
         if (fat >= 0) {
             this.setState(() => ({ fat }));
         }
+    };
+
+    onFatDecrement = () => {
+        if (this.state.fat > 0) {
+            this.setState((prevState) => ({ fat: prevState.fat - 1 }));
+        }
+    };
+
+    onFatIncrement = () => {
+        this.setState((prevState) => ({ fat: prevState.fat + 1 }));
     };
 
     onSubmit = (e) => {
@@ -93,67 +135,74 @@ class FoodForm extends React.Component {
     render() {
         return (
             <div>
-                {this.state.err && <p className="error">{this.state.err}</p>}
-                <form onSubmit={this.onSubmit}>
-                    <div className="FoodForm__row">
-                        Name:
-                        <input
-                          type='name'
-                          value={this.state.name}
-                          onChange={this.onNameChange}
-                          placeholder="name"
-                          required
-                        />
-                    </div>
-                    <div className="FoodForm__row">
-                        Serving Size
-                        <input
-                          type="number"
-                          value={this.state.servingSize}
-                          onChange={this.onServingSizeChange}
-                          required
-                        />
-                    </div>
-                    <div className="FoodForm__row">
-                        Serving Units
-                        <select value={this.state.servingUnit} onChange={this.onServingUnitChange}>
-                          {this.state.servingUnits.map((unit, index) => (
-                            <option key={index} value={index}>
-                              {unit}
-                            </option>
-                          ))}
-                        </select>
-                    </div>
-                    <div className="FoodForm__row">
-                        Carbs
-                        <input
-                          type='number'
-                          value={this.state.carbs}
-                          onChange={this.onCarbsChange}
-                          required
-                        />
-                    </div>
-                    <div className="FoodForm__row">
-                        Prot
-                        <input
-                          type='number'
-                          value={this.state.prot}
-                          onChange={this.onProtChange}
-                          required
-                        />
-                    </div>
-                    <div className="FoodForm__row">
-                        Fat
-                        <input
-                          type='number'
-                          value={this.state.fat}
-                          onChange={this.onFatChange}
-                          required
-                        />
-                    </div>
-                    <button type="submit">
-                      {this.props.food ? 'Edit Food' : 'Add Food'}
-                    </button>
+                <form onSubmit={this.onSubmit} className="FoodForm">
+                    <InputRow
+                      type="text"
+                      value={this.state.name}
+                      onChange={this.onNameChange}
+                      placeholder="name"
+                      autoFocus={true}
+                      required={true}
+                    />
+                    <InputRow
+                      type="number"
+                      label="Serving Size"
+                      value={this.state.servingSize}
+                      onChange={this.onServingSizeChange}
+                      onIncrement={this.onServingSizeIncrement}
+                      onDecrement={this.onServingSizeDecrement}
+                      required={true}
+                    />
+                    <InputRow
+                      type="select"
+                      label="Serving Units"
+                      value={this.state.servingUnit}
+                      onChange={this.onServingUnitChange}
+                      selectOptions={this.state.servingUnits}
+                      required={true}
+                    />
+                    <InputRow
+                      type="number"
+                      label="Carbs (g)"
+                      value={this.state.carbs}
+                      onChange={this.onCarbsChange}
+                      onIncrement={this.onCarbsIncrement}
+                      onDecrement={this.onCarbsDecrement}
+                      required={true}
+                    />
+                    <InputRow
+                      type="number"
+                      label="Prot (g)"
+                      value={this.state.prot}
+                      onChange={this.onProtChange}
+                      onIncrement={this.onProtIncrement}
+                      onDecrement={this.onProtDecrement}
+                      required={true}
+                    />
+                    <InputRow
+                      type="number"
+                      label="Fat (g)"
+                      value={this.state.fat}
+                      onChange={this.onFatChange}
+                      onIncrement={this.onFatIncrement}
+                      onDecrement={this.onFatDecrement}
+                      required={true}
+                    />
+                    {this.state.err && (
+                      <Notification notification={this.state.err} error={true} />
+                    )}
+                    <LargeButton
+                      isSubmit={true}
+                      onClick={this.onSubmit}
+                      buttonText={this.props.food ? 'Edit Food' : 'Add Food'}
+                    />
+                    {this.props.includeRemove && (
+                      <LargeButton
+                        onClick={this.props.onRemove}
+                        buttonText="Remove Food"
+                        isWarning={true}
+                      />
+                    )}
                 </form>
 
             </div>

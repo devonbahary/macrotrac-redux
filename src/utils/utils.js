@@ -32,6 +32,12 @@ export const totalFat = (data) => {
     }
 };
 
+export const calsAsRatio = (meals, user) => {
+    const totalCals = exports.totalCalories(meals);
+    const calorieGoal = user.calorieGoal;
+    return calorieGoal ? totalCals / calorieGoal : 0;
+};
+
 export const carbsAsRatio = (meals) => {
     const totalCals = exports.totalCalories(meals);
     const totalCarbs = exports.totalCarbs(meals);
