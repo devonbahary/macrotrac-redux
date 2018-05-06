@@ -42,94 +42,95 @@ class FoodForm extends React.Component {
     };
 
     onServingSizeChange = (e) => {
-        const servingSize = Number(e.target.value);
-        if (servingSize > 0) {
-            this.setState(() => ({ servingSize }));
-        }
-    };
-
-    onServingSizeDecrement = () => {
-        if (this.state.servingSize > 1) {
-            this.setState((prevState) => ({ servingSize: prevState.servingSize - 1 }));
-        }
+        const servingSize = e.target.value;
+        this.setState(() => ({ servingSize }));
     };
 
     onServingSizeIncrement = () => {
-        this.setState((prevState) => ({ servingSize: prevState.servingSize + 1 }));
+        this.setState((prevState) => ({
+          servingSize: Math.round((Number(prevState.servingSize) + (this.props.food ? this.props.food.servingSize : 1)) * 10) / 10
+        }));
+    };
+
+    onServingSizeDecrement = () => {
+        this.setState((prevState) => ({
+          servingSize: Math.max(0, Math.round((Number(prevState.servingSize) - (this.props.food ? this.props.food.servingSize : 1)) * 10) / 10)
+        }));
     };
 
     onServingUnitChange = (e) => {
-        const servingUnit = Number(e.target.value);
+        const servingUnit = e.target.value;
         this.setState(() => ({ servingUnit }));
     };
 
     onCarbsChange = (e) => {
-        const carbs = Number(e.target.value);
-        if (carbs >= 0) {
+        const carbs = e.target.value;
+        if (!carbs || carbs.match(/^\d{0,}(\.\d{0,1})?$/)) {
             this.setState(() => ({ carbs }));
         }
     };
 
-    onCarbsDecrement = () => {
-        if (this.state.carbs > 0) {
-            this.setState((prevState) => ({ carbs: prevState.carbs - 1 }));
-        }
+    onCarbsIncrement = () => {
+        this.setState((prevState) => ({ carbs: Math.round((Number(prevState.carbs) + 1) * 10) / 10 }));
     };
 
-    onCarbsIncrement = () => {
-        this.setState((prevState) => ({ carbs: prevState.carbs + 1 }));
+    onCarbsDecrement = () => {
+        this.setState((prevState) => ({
+          carbs: Math.max(0, Math.round((Number(prevState.carbs) - 1) * 10) / 10)
+        }));
     };
 
     onProtChange = (e) => {
-        const prot = Number(e.target.value);
-        if (prot >= 0) {
+        const prot = e.target.value;
+        if (!prot || prot.match(/^\d{0,}(\.\d{0,1})?$/)) {
             this.setState(() => ({ prot }));
         }
     };
 
-    onProtDecrement = () => {
-        if (this.state.prot > 0) {
-            this.setState((prevState) => ({ prot: prevState.prot - 1 }));
-        }
+    onProtIncrement = () => {
+        this.setState((prevState) => ({ prot: Math.round((Number(prevState.prot) + 1) * 10) / 10 }));
     };
 
-    onProtIncrement = () => {
-        this.setState((prevState) => ({ prot: prevState.prot + 1 }));
+    onProtDecrement = () => {
+        this.setState((prevState) => ({
+          prot: Math.max(0, Math.round((Number(prevState.prot) - 1) * 10) / 10)
+        }));
     };
 
     onFatChange = (e) => {
-        const fat = Number(e.target.value);
-        if (fat >= 0) {
+        const fat = e.target.value;
+        if (!fat || fat.match(/^\d{0,}(\.\d{0,1})?$/)) {
             this.setState(() => ({ fat }));
         }
     };
 
-    onFatDecrement = () => {
-        if (this.state.fat > 0) {
-            this.setState((prevState) => ({ fat: prevState.fat - 1 }));
-        }
+    onFatIncrement = () => {
+        this.setState((prevState) => ({ fat: Math.round((Number(prevState.fat) + 1) * 10) / 10 }));
     };
 
-    onFatIncrement = () => {
-        this.setState((prevState) => ({ fat: prevState.fat + 1 }));
+    onFatDecrement = () => {
+        this.setState((prevState) => ({
+          fat: Math.max(0, Math.round((Number(prevState.fat) - 1) * 10) / 10)
+        }));
     };
 
     onSubmit = (e) => {
         e.preventDefault();
-        if (this.state.carbs + this.state.prot + this.state.fat > 0) {
+        if (Number(this.state.servingSize) === 0) {
+            this.setState(() => ({ err: 'Can\'t have a serving size of 0.' }))
+        } else if (Number(this.state.carbs) + Number(this.state.prot) + Number(this.state.fat) === 0) {
+            this.setState(() => ({ err: 'Can\'t add an empty-calorie food.' }));
+        } else {
             this.setState(() => ({ err: '' }));
             this.props.onSubmit({
               name: this.state.name,
-              servingSize: this.state.servingSize,
+              servingSize: Number(this.state.servingSize),
               servingUnit: this.state.servingUnits[this.state.servingUnit],
-              carbs: this.state.carbs,
-              prot: this.state.prot,
-              fat: this.state.fat
+              carbs: Number(this.state.carbs),
+              prot: Number(this.state.prot),
+              fat: Number(this.state.fat)
             });
-        } else {
-            this.setState(() => ({ err: 'Can\'t add an empty-calorie food.' }));
         }
-
     }
 
     render() {
@@ -141,7 +142,7 @@ class FoodForm extends React.Component {
                       value={this.state.name}
                       onChange={this.onNameChange}
                       placeholder="name"
-                      autoFocus={true}
+                      autoFocus={!this.props.onRemove}
                       required={true}
                     />
                     <InputRow
@@ -193,10 +194,9 @@ class FoodForm extends React.Component {
                     )}
                     <LargeButton
                       isSubmit={true}
-                      onClick={this.onSubmit}
                       buttonText={this.props.food ? 'Edit Food' : 'Add Food'}
                     />
-                    {this.props.includeRemove && (
+                    {!!this.props.onRemove && (
                       <LargeButton
                         onClick={this.props.onRemove}
                         buttonText="Remove Food"
@@ -204,7 +204,6 @@ class FoodForm extends React.Component {
                       />
                     )}
                 </form>
-
             </div>
         );
     }

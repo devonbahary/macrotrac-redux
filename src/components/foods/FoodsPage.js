@@ -13,7 +13,7 @@ class FoodsPage extends React.Component {
     };
 
     onSearchChange = (e) => {
-        const search = e.target.value;
+        const search = e.target.value.replace(/[^a-zA-Z ]/, '');
         this.setState(() => ({ search }));
     };
 

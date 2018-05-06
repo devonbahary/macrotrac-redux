@@ -21,18 +21,35 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: gray;
     text-shadow: 2px 2px white;
 }
 
 .MainNav__link.active-link {
     background: $theme-color;
+
+    .MainNav__linkIcon {
+        animation: hop 0.25s ease-in-out;
+    }
 }
 
 .MainNav__link.active-link {
     .MainNav__linkIcon {
         color: white;
+        font-size: 2rem;
         text-shadow: 2px 2px gray;
+    }
+}
+
+@keyframes hop {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    50% {
+        transform: translate(-50%, -70%);
+    }
+    100% {
+        transform: translate(-50%, -50%);
     }
 }

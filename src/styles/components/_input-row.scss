@@ -1,31 +1,39 @@
 .InputRow,
-.InputRow--text {
+.InputRow--text,
+.InputRow--cals,
+.InputRow--carbs,
+.InputRow--prot,
+.InputRow--fat {
     background: $light-color;
     display: grid;
     grid-template-columns: 40% 60%;
     height: 4rem;
     padding: 0.5rem 6px;
-    box-shadow: 0 1px 5px gray;
     margin-bottom: 0.5rem;
     font-size: 1.2rem;
 }
 
+.InputRow,
 .InputRow--text {
-    grid-template-columns: 1fr;
+    box-shadow: 0 1px 5px gray;
 }
 
-.InputRow.--cals {
+.InputRow--text {
+  grid-template-columns: 1fr;
+}
+
+.InputRow--cals {
     box-shadow: 0 1px 1px $cals-color;
 }
-.InputRow.--carbs {
+.InputRow--carbs {
     box-shadow: 0 1px 1px $carbs-color;
 }
 
-.InputRow.--prot {
+.InputRow--prot {
     box-shadow: 0 1px 1px $prot-color;
 }
 
-.InputRow.--fat {
+.InputRow--fat {
     box-shadow: 0 1px 1px $fat-color;
 }
 

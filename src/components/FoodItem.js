@@ -22,7 +22,6 @@ class FoodItem extends React.Component {
     };
 
     onServingSizeChange = (e) => {
-        console.log('servingSizeChange')
         const mealServingSize = Number(e.target.value);
         this.updateServingSize(mealServingSize);
     };
@@ -45,9 +44,9 @@ class FoodItem extends React.Component {
               food: {
                 ...prevState.food,
                 servingSize: mealServingSize,
-                carbs: prevState.food.carbs * mealServingSize / prevState.food.servingSize,
-                prot: prevState.food.prot * mealServingSize / prevState.food.servingSize,
-                fat: prevState.food.fat * mealServingSize / prevState.food.servingSize
+                carbs: Math.round(prevState.food.carbs * mealServingSize / prevState.food.servingSize * 10) / 10,
+                prot: Math.round(prevState.food.prot * mealServingSize / prevState.food.servingSize * 10) / 10,
+                fat: Math.round(prevState.food.fat * mealServingSize / prevState.food.servingSize * 10) / 10
               }
             }));
         }

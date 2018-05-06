@@ -16,7 +16,11 @@ const EditFoodPage = (props) => {
 
     return (
         <div>
-            <FoodForm onSubmit={onSubmit} food={props.food} includeRemove={true} onRemove={onRemove} />
+            <FoodForm
+              onSubmit={onSubmit}
+              food={props.food}
+              onRemove={onRemove}
+            />
         </div>
     );
 };

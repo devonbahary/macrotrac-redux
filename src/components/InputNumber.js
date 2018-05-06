@@ -12,8 +12,10 @@ const InputNumber = ({ value, onChange, onIncrement, onDecrement, step }) => (
         type='number'
         value={value}
         onChange={onChange}
-        step={step}
+        step='any'
         required
+        min='0'
+        max='1000'
       />
       <div
         className="InputNumber__button--increment"

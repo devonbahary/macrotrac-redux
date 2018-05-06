@@ -15,7 +15,7 @@ const InputRow = ({
   autoFocus,
   step
 }) => (
-  <div className={type === 'text' ? "InputRow--text " : "InputRow " + addClass}>
+  <div className={type === 'text' ? "InputRow--text" : "InputRow" + (addClass ? addClass : '')}>
       { type === 'text' &&
         <input
           type='text'
