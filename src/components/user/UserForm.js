@@ -177,6 +177,7 @@ class UserForm extends React.Component {
                     isSubmit={true}
                     onClick={this.onSubmit}
                     buttonText="Save Changes"
+                    disabled={!this.state.hasChanged}
                   />
               </form>
           </div>

@@ -12,6 +12,12 @@ class FoodItem extends React.Component {
       mealServingSize: this.props.addMeal ? this.props.food.servingSize : null
     };
 
+    componentDidUpdate() {
+        if (this.state.isOpen) {
+            this.foodItemNode.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     handleClick = () => this.setState((prevState) => ({
       isOpen: !prevState.isOpen,
       confirmRemove: false
@@ -70,6 +76,7 @@ class FoodItem extends React.Component {
                       "FoodItem"
                     )
                   }
+                  ref={node => this.foodItemNode = node}
                 >
                     <header className="FoodItem__header" onClick={this.handleClick}>
                         <div className="FoodItem__headerDescription">
@@ -85,7 +92,7 @@ class FoodItem extends React.Component {
                         </div>
                     </header>
                     <div className="FoodItem__body">
-                        <MacronutrientGraph food={this.state.food} hidden={!this.state.isOpen}/>
+                        <MacronutrientGraph food={this.state.food} hidden={!this.state.isOpen} />
                         { this.state.isOpen && (
                           <FoodItemTools
                             food={this.state.food}

@@ -24,6 +24,7 @@ const InputRow = ({
           placeholder={placeholder}
           autoFocus={autoFocus}
           required={required}
+          maxLength="25"
         />
       }
       { type !== 'text' &&

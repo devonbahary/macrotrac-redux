@@ -2,6 +2,7 @@ import React from 'react';
 import InputRow from '../InputRow';
 import LargeButton from '../LargeButton';
 import Notification from '../Notification';
+import MacronutrientGraph from '../MacronutrientGraph';
 
 class FoodForm extends React.Component {
     servingUnits = [
@@ -29,7 +30,8 @@ class FoodForm extends React.Component {
       prot: this.props.food ? this.props.food.prot : 0,
       fat: this.props.food ? this.props.food.fat : 0,
       err: '',
-      servingUnits: this.props.food ? [ ...this.servingUnits, this.props.food.name ] : this.servingUnits
+      servingUnits: this.props.food ? [ ...this.servingUnits, this.props.food.name ] : this.servingUnits,
+      hasChanged: false
     };
 
     onNameChange = (e) => {
@@ -37,80 +39,110 @@ class FoodForm extends React.Component {
         const updatedServingUnits = this.state.servingUnits.filter(units => units !== this.state.name);
         this.setState(() => ({
           name,
-          servingUnits: name.length > 0 ? [ ...updatedServingUnits, name ] : updatedServingUnits
+          servingUnits: name.length > 0 ? [ ...updatedServingUnits, name ] : updatedServingUnits,
+          hasChanged: true
         }));
     };
 
     onServingSizeChange = (e) => {
         const servingSize = e.target.value;
-        this.setState(() => ({ servingSize }));
+        this.setState(() => ({
+          servingSize,
+          hasChanged: true
+        }));
     };
 
     onServingSizeIncrement = () => {
         this.setState((prevState) => ({
-          servingSize: Math.round((Number(prevState.servingSize) + (this.props.food ? this.props.food.servingSize : 1)) * 10) / 10
+          servingSize: Math.round((Number(prevState.servingSize) + (this.props.food ? this.props.food.servingSize : 1)) * 10) / 10,
+          hasChanged: true
         }));
     };
 
     onServingSizeDecrement = () => {
         this.setState((prevState) => ({
-          servingSize: Math.max(0, Math.round((Number(prevState.servingSize) - (this.props.food ? this.props.food.servingSize : 1)) * 10) / 10)
+          servingSize: Math.max(0, Math.round((Number(prevState.servingSize) - (this.props.food ? this.props.food.servingSize : 1)) * 10) / 10),
+          hasChanged: true
         }));
     };
 
     onServingUnitChange = (e) => {
         const servingUnit = e.target.value;
-        this.setState(() => ({ servingUnit }));
+        this.setState(() => ({
+          servingUnit,
+          hasChanged: true
+        }));
     };
 
     onCarbsChange = (e) => {
         const carbs = e.target.value;
         if (!carbs || carbs.match(/^\d{0,}(\.\d{0,1})?$/)) {
-            this.setState(() => ({ carbs }));
+            this.setState(() => ({
+              carbs,
+              hasChanged: true
+            }));
         }
     };
 
     onCarbsIncrement = () => {
-        this.setState((prevState) => ({ carbs: Math.round((Number(prevState.carbs) + 1) * 10) / 10 }));
+        this.setState((prevState) => ({
+          carbs: Math.round((Number(prevState.carbs) + 1) * 10) / 10,
+          hasChanged: true
+        }));
     };
 
     onCarbsDecrement = () => {
         this.setState((prevState) => ({
-          carbs: Math.max(0, Math.round((Number(prevState.carbs) - 1) * 10) / 10)
+          carbs: Math.max(0, Math.round((Number(prevState.carbs) - 1) * 10) / 10),
+          hasChanged: true
         }));
     };
 
     onProtChange = (e) => {
         const prot = e.target.value;
         if (!prot || prot.match(/^\d{0,}(\.\d{0,1})?$/)) {
-            this.setState(() => ({ prot }));
+            this.setState(() => ({
+              prot,
+              hasChanged: true
+            }));
         }
     };
 
     onProtIncrement = () => {
-        this.setState((prevState) => ({ prot: Math.round((Number(prevState.prot) + 1) * 10) / 10 }));
+        this.setState((prevState) => ({
+          prot: Math.round((Number(prevState.prot) + 1) * 10) / 10,
+          hasChanged: true
+        }));
     };
 
     onProtDecrement = () => {
         this.setState((prevState) => ({
-          prot: Math.max(0, Math.round((Number(prevState.prot) - 1) * 10) / 10)
+          prot: Math.max(0, Math.round((Number(prevState.prot) - 1) * 10) / 10),
+          hasChanged: true
         }));
     };
 
     onFatChange = (e) => {
         const fat = e.target.value;
         if (!fat || fat.match(/^\d{0,}(\.\d{0,1})?$/)) {
-            this.setState(() => ({ fat }));
+            this.setState(() => ({
+              fat,
+              hasChanged: true
+            }));
         }
     };
 
     onFatIncrement = () => {
-        this.setState((prevState) => ({ fat: Math.round((Number(prevState.fat) + 1) * 10) / 10 }));
+        this.setState((prevState) => ({
+          fat: Math.round((Number(prevState.fat) + 1) * 10) / 10,
+          hasChanged: true
+        }));
     };
 
     onFatDecrement = () => {
         this.setState((prevState) => ({
-          fat: Math.max(0, Math.round((Number(prevState.fat) - 1) * 10) / 10)
+          fat: Math.max(0, Math.round((Number(prevState.fat) - 1) * 10) / 10),
+          hasChanged: true
         }));
     };
 
@@ -162,6 +194,7 @@ class FoodForm extends React.Component {
                       selectOptions={this.state.servingUnits}
                       required={true}
                     />
+                    <MacronutrientGraph food={this.state} />
                     <InputRow
                       type="number"
                       label="Carbs (g)"
@@ -195,6 +228,7 @@ class FoodForm extends React.Component {
                     <LargeButton
                       isSubmit={true}
                       buttonText={this.props.food ? 'Edit Food' : 'Add Food'}
+                      disabled={!this.state.hasChanged}
                     />
                     {!!this.props.onRemove && (
                       <LargeButton

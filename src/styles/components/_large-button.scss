@@ -16,6 +16,10 @@
     margin-top: 1rem;
 }
 
+.LargeButton--submit:disabled {
+    background: $disabled-color;
+}
+
 .LargeButton--warning {
     background: $error-color;
 }
