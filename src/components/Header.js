@@ -26,15 +26,13 @@ const Header = (props) => {
         }
     }
 
-
     return (
         <header className="Header">
             <span className="Header__text">
               {title}
             </span>
         </header>
-    )
-
+    );
 };
 
 export default Header;

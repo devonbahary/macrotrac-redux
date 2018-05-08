@@ -12,8 +12,8 @@ class FoodItem extends React.Component {
       mealServingSize: this.props.addMeal ? this.props.food.servingSize : null
     };
 
-    componentDidUpdate() {
-        if (this.state.isOpen) {
+    componentDidUpdate(prevProps, prevState) {
+        if (!prevState.isOpen && this.state.isOpen) {
             this.foodItemNode.scrollIntoView({ behavior: 'smooth' });
         }
     }

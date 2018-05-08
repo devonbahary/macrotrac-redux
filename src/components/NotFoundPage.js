@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import MacrotracLogo from './MacrotracLogo';
 
 const NotFoundPage = () => (
     <div className="NotFoundPage">
-        <div className="NotFoundPage__logoBackground">
-            <span className="NotFoundPage__logo ion-fork"></span>
-        </div>
+        <MacrotracLogo />
         <div className="NotFoundPage__description">
             <p className="NotFoundPage__404">404</p>
             <p>Could not find the page you requested.</p>
