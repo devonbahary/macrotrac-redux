@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addMeal } from '../../actions/meals';
 import FoodsList from '../FoodsList';
+import Notification from '../Notification';
 import SearchBar from '../SearchBar';
 
 class AddMealPage extends React.Component {
@@ -26,14 +27,17 @@ class AddMealPage extends React.Component {
     render() {
         return (
             <div>
-                <h3>Add Meal</h3>
+                <Notification notification={this.props.notification} />
                 <SearchBar
                   value={this.state.search}
                   onChange={this.onSearchChange}
                   onReset={this.resetSearch}
                 />
                 <FoodsList
-                  foods={this.props.foods.filter(food => food.name.match(this.state.search))}
+                  foods={this.props.foods.filter(food => {
+                      const regExp = new RegExp(this.state.search, 'i');
+                      return food.name.match(regExp);
+                  })}
                   addMeal={this.addMeal}
                 />
             </div>
@@ -42,7 +46,8 @@ class AddMealPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  foods: state.foods.items
+  foods: state.foods.items,
+  notification: state.foods.notification
 });
 
 export default connect(mapStateToProps)(AddMealPage);

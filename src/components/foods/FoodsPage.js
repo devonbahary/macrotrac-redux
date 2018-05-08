@@ -36,7 +36,10 @@ class FoodsPage extends React.Component {
                   onReset={this.resetSearch}
                 />
                 <FoodsList
-                  foods={this.props.foods.filter(food => food.name.match(this.state.search))}
+                  foods={this.props.foods.filter(food => {
+                      const regExp = new RegExp(this.state.search, 'i');
+                      return food.name.match(regExp);
+                  })}
                   canEdit={true}
                   onRemove={this.removeFood}
                 />

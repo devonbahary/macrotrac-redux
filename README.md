@@ -1,79 +1,50 @@
-# Macrotrac (Redux Prototype)
+# [Macrotrac](http://macrotrac.herokuapp.com/)
 > A nutrition tracker to help you meet your daily macronutrient ratio goals.
 
-The app is divided into a few sections:
-  - **User:** set calorie and macronutrient goals
-  - **Add Food:** create and save a list of foods you frequently eat
-  - **Foods:** display your saved foods to make changes
-  - **Meals:** record the meals you eat throughout the day from your list of saved foods and view your progress towards your goals
+live: http://macrotrac.herokuapp.com/
 
-(* As a prototype, the app features minimal styling.)
+![Macrotrac Home Page](./assets/gifs/AddMeal.gif)
 
-## The Technical Stuff
+## A Nutrition Tracker Focused on Macronutrients
 
-### Redux Prototype
-This is the first iteration of a previously built **React** app that features **Redux**!
+Calorie-counting is a great first step towards nutritional fitness, but more and more people are becoming conscious of not just *how much* they eat, but *what* they eat.
 
-### Redux has helped solve a lot of state management headaches
-> In the previous iteration, Macrotrac had a lot of state that had to be shared between different components:
+By changing up the composition of the foods you eat, [you can make changes to your own body composition, health, and longevity](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4490104/).
 
-- App (common state)
-  - Meals
-  - Foods
-  - User
+**Macrotrac** doesn't try to tell you which macronutrient ratios to strive for; it's just here to help you achieve them!
 
-**Meals** derived its options from **Foods** and needed to know the **User's** goals.
+## Macronutrient Visualization
 
-To be able to pass along all this data, *I kept most of the state in the **App** component*, including functions to respond to **each case** of data changing in **each component**.
+![Macrotrac MacronutrientGraph](./assets/imgs/MacronutrientGraph.png)
 
-> The **App** parent component was extremely burdened.
+All food items and daily totals are visualized by the macronutrient graph:
+- a display of calories as a fraction of your daily limit and
+- the macronutrients as a ratio of their calorie contribution to the sum total calories
 
-Not only that, but the diagram above is greatly simplified. In reality, the component heirarchy was something like:
+(The screenshot above displays a user with a calorie goal of 2000cals and a 35%/25%/40% carbohydrate/protein/fat macronutrient ratio goal.)
 
-- App (has **data A** | **data B**)
-  - Meals (passes **data A**)
-    - ... (passes **data A**)
-      - ...
-      - ... (passes **data A**)
-        - ... (needs **data A**)
-  - Foods (passes **data B**)
-    - ... (passes **data B**)
-      - ...
-      - ... (passes **data B**)
-        - ... (needs **data B**)
-      - ...
-  - ...
+As you adjust your own goals in **Macrotrac**, you'll see the macronutrient graph change to reflect your new goals!
 
-I think even this more accurate diagram doesn't show how much **distance** in the component hierarchy there was **between the data and the components** that used them.
 
-> The **design flaw** here was that so much of the relevant shared data had to be passed down through components that **didn't need to know anything about the data** just to get to the child components that actually had use for them.
+### Your Foods  
+Keep a list of foods you commonly eat in the app.
 
-This harmed the React principles of **component reusability**: if I made a change in component organization, I had to *rewire all the props* that were being passed through the hierarchy.
+![Macrotrac Foods](./assets/gifs/AddFood.gif)
 
-### The Redux Solution
-Alright, so was it a walk in the park to learn?
+### Track Your Meals
+Observe how the meals you eat affect your progress towards your goals.
 
-Ehh some things have been easier, but I learned a lot of cool ES6 features in the process and now I'm actually excited to tackle complex state challenges **thanks to Redux**!
+![Macrotrac Meals](./assets/imgs/Home.png)
 
-This is how my app has changed:
+### Set Goals
+Personalize the app to reflect all food nutritional profiles in relation to the goals you set!
 
-- Provider (**store** has **data A** | **data B**)
-  - App
-    - Meals
-      - ...
-        - ...
-        - ...
-          - ... (connects to **data A**)
-    - Foods
-      - ...
-        - ...
-        - ...
-          - ... (connects to **data B**)
-        - ...
-    - User
+![Macrotrac Goals](./assets/gifs/User.gif)
 
-Except **now**, when a component needs **data A** or **data B**, all I have to do is `connect` that component to the **store**, passing along the **store state** as **props** to that component. The components in between don't need to get involved whatsoever.
+## Built with React, Managed by Redux
 
-If a component needs to call functions to change state, that component gets `connect`ed and **actions** are imported to be called (**dispatched**) and then interpreted by **reducers** that handle the change in state.
+![Built with React And Redux](./assets/imgs/ReactAndRedux.png)
 
-**Thank you, Redux!**
+This app was built from my own [React-Redux starter template](https://github.com/devonbahary/react-redux-starter-template) and is the production iteration of a [prototype](https://github.com/devonbahary/macrotrac-redux-proto) I built previously.
+
+In the [prototype](https://github.com/devonbahary/macrotrac-redux-proto) documentation I go into detail about how implementing Redux changed the development of my app and unburdened my components from the state and prop-passing tangled mess they would otherwise suffer from.
