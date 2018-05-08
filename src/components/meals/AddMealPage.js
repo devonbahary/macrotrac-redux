@@ -47,7 +47,7 @@ class AddMealPage extends React.Component {
 
 const mapStateToProps = (state) => ({
   foods: state.foods.items,
-  notification: state.foods.notification
+  notification: `Found ${state.foods.items.length} foods.`
 });
 
 export default connect(mapStateToProps)(AddMealPage);
