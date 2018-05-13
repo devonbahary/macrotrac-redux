@@ -1,0 +1,101 @@
+.UserMacrosGraph {
+    background: $light-color;
+    border-radius: $border-radius;
+    padding: 12px 6px;
+}
+
+.UserMacrosGraph__container {
+    position: relative;
+    border-bottom: 1px solid $dark-color;
+    border-top: 1px solid $dark-color;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+}
+
+.UserMacrosGraph__containerMarkerOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.UserMacrosGraph__containerMarkerOverlayMarker {
+    border-bottom: 1px solid $dark-color;
+    opacity: 0.8;
+}
+
+.UserMacrosGraph__containerColumn--carbs,
+.UserMacrosGraph__containerColumn--prot,
+.UserMacrosGraph__containerColumn--fat {
+    position: relative;
+}
+
+.UserMacrosGraph__containerColumnLabel {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.8;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.UserMacrosGraph__containerColumnBg--carbs,
+.UserMacrosGraph__containerColumnBg--prot,
+.UserMacrosGraph__containerColumnBg--fat {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 25%;
+    height: 100%;
+    box-shadow: 1px 1px lightgray;
+}
+
+.UserMacrosGraph__containerColumnBg--carbs {
+    background: $carbs-color-alpha;
+}
+
+.UserMacrosGraph__containerColumnBg--prot {
+    background: $prot-color-alpha;
+}
+
+.UserMacrosGraph__containerColumnBg--fat {
+    background: $fat-color-alpha;
+}
+
+.UserMacrosGraph__containerColumnFill--carbs,
+.UserMacrosGraph__containerColumnFill--prot,
+.UserMacrosGraph__containerColumnFill--fat {
+    position: absolute;
+    left: 50%; bottom: 0;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 100%;
+    height: 0;
+    -webkit-transition: height 0.25s ease-out;
+    transition: height 0.25s ease-out;
+}
+
+.UserMacrosGraph__containerColumnFill--carbs {
+    background: $carbs-color;
+}
+
+.UserMacrosGraph__containerColumnFill--prot {
+    background: $prot-color;
+}
+
+.UserMacrosGraph__containerColumnFill--fat {
+    background: $fat-color;
+}
+
+.UserMacroGraph__containerColumnRatio {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 0.9rem;
+    -webkit-transition: bottom 0.25s ease-out;
+    transition: bottom 0.25s ease-out;
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 
 const Header = (props) => {
     let title;
@@ -27,11 +29,31 @@ const Header = (props) => {
     }
 
     return (
-        <header className="Header">
-            <span className="Header__text">
-              {title}
-            </span>
-        </header>
+        <div>
+            <MediaQuery minWidth={1224}>
+                <header className="Header--largeDevice">
+                    <NavLink to="/" activeClassName="active-link" exact className="Header__link--title">
+                        Macrotrac
+                    </NavLink>
+                    <NavLink to="/meals" activeClassName="active-link" className="Header__link">
+                        Home
+                    </NavLink>
+                    <NavLink to="/foods" activeClassName="active-link" className="Header__link">
+                        Foods
+                    </NavLink>
+                    <NavLink to="/user" exact activeClassName="active-link" className="Header__link">
+                        Settings
+                    </NavLink>
+                </header>
+            </MediaQuery>
+            <MediaQuery maxWidth={1224}>
+                <header className="Header--smallDevice">
+                    <span className="Header__text">
+                      {title}
+                    </span>
+                </header>
+            </MediaQuery>
+        </div>
     );
 };
 

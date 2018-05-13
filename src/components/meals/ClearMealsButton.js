@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { clearMeals } from '../../actions/meals';
-import FoodItemTool from '../FoodItemTool';
+import CommonButton from '../CommonButton';
 
 class ClearMealsButton extends React.Component {
     state = {
@@ -26,14 +26,14 @@ class ClearMealsButton extends React.Component {
     render() {
         return (
             <div className={this.state.confirmClear ? "ClearMealsButton active" : "ClearMealsButton"}>
-                <FoodItemTool
+                <CommonButton
                   iconClass="clear-icon ion-trash-b"
                   buttonText={this.props.meals.length > 0 && this.state.confirmClear ? 'Confirm' : 'Clear'}
                   onClick={this.onClick}
                   active={this.props.meals.length > 0 && this.state.confirmClear}
                 />
                 {this.props.meals.length > 0 && this.state.confirmClear &&
-                  <FoodItemTool
+                  <CommonButton
                     iconClass="cancel-clear-icon ion-close-round"
                     buttonText="Cancel"
                     onClick={this.onCancel}

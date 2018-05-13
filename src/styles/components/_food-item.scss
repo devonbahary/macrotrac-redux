@@ -6,6 +6,7 @@
     -webkit-transition: height 0.25s ease-out;
     transition: height 0.25s ease-out;
     box-shadow: 0 -1px 5px gray;
+    border-radius: $border-radius;
 }
 
 .FoodItem.active {
@@ -15,6 +16,10 @@
     .FoodItem__headerDescriptionName {
         color: $theme-color;
     }
+}
+
+.FoodItem:hover {
+    box-shadow: 0 0 5px $theme-color;
 }
 
 .FoodItem.add-meal {
@@ -28,6 +33,12 @@
     grid-template-columns: 75% 25%;
     height: 4rem;
     box-shadow: 0 0 1px gray;
+}
+
+.FoodItem {
+    .FoodItem__header {
+        cursor: pointer;
+    }
 }
 
 .FoodItem--noneFound {
@@ -72,6 +83,13 @@
     padding-left: 12px;
 }
 
-.FoodItem__body {
+@media only screen and (min-width: 1224px) {
+    .FoodItem.active {
+        height: 12rem;
+    }
 
+    .FoodItem__body {
+        display: grid;
+        grid-template-columns: 75% 25%;
+    }
 }

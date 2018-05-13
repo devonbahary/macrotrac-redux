@@ -18,10 +18,16 @@ class FoodItem extends React.Component {
         }
     }
 
-    handleClick = () => this.setState((prevState) => ({
-      isOpen: !prevState.isOpen,
-      confirmRemove: false
-    }));
+    handleClick = () => {
+        this.setState((prevState) => ({
+          isOpen: !prevState.isOpen,
+          confirmRemove: false,
+          mealServingSize: this.props.addMeal ? this.props.food.servingSize : null
+        }));
+        if (this.props.addMeal) {
+            this.updateServingSize(this.props.food.servingSize);
+        }
+    }
 
     handleRemove = () => {
         this.state.confirmRemove ? this.props.onRemove(this.props.food) : this.setState(() => ({ confirmRemove: true }));

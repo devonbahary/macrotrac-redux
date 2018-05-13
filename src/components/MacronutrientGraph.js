@@ -30,7 +30,7 @@ const MacronutrientGraph = (props) => {
 
 
     return (
-        <div className="MacronutrientGraph">
+        <div className={props.hidden ? "MacronutrientGraph--hidden" : "MacronutrientGraph"}>
             <div className="MacronutrientGraph__container">
                 <div className="MacronutrientGraph__row">
                     <div className="MacronutrientGraph__rowNutrient">

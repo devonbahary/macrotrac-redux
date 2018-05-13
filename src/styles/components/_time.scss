@@ -23,3 +23,9 @@
     font-size: 1rem;
     height: 1rem;
 }
+
+@media only screen and (min-width: 1224px) {
+    .Time {
+        height: auto;
+    }
+}

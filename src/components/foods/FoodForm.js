@@ -1,5 +1,6 @@
 import React from 'react';
-import InputRow from '../InputRow';
+import MediaQuery from 'react-responsive';
+import InputField from '../InputField';
 import LargeButton from '../LargeButton';
 import Notification from '../Notification';
 import MacronutrientGraph from '../MacronutrientGraph';
@@ -168,8 +169,17 @@ class FoodForm extends React.Component {
     render() {
         return (
             <div>
+                <MediaQuery minWidth={1224}>
+                    <Notification
+                      notification={this.state.err || (!!this.props.onRemove ? (
+                        'Make changes to your food item.'
+                      ) : (
+                        'Add a new food item.'
+                      ))}
+                      error={!!this.state.err} />
+                </MediaQuery>
                 <form onSubmit={this.onSubmit} className="FoodForm">
-                    <InputRow
+                    <InputField
                       type="text"
                       value={this.state.name}
                       onChange={this.onNameChange}
@@ -177,54 +187,60 @@ class FoodForm extends React.Component {
                       autoFocus={!this.props.onRemove}
                       required={true}
                     />
-                    <InputRow
-                      type="number"
-                      label="Serving Size"
-                      value={this.state.servingSize}
-                      onChange={this.onServingSizeChange}
-                      onIncrement={this.onServingSizeIncrement}
-                      onDecrement={this.onServingSizeDecrement}
-                      required={true}
-                    />
-                    <InputRow
-                      type="select"
-                      label="Serving Units"
-                      value={this.state.servingUnit}
-                      onChange={this.onServingUnitChange}
-                      selectOptions={this.state.servingUnits}
-                      required={true}
-                    />
+                    <div className="FoodForm__largeDeviceInputFieldRow--two">
+                        <InputField
+                          type="number"
+                          label="Serving Size"
+                          value={this.state.servingSize}
+                          onChange={this.onServingSizeChange}
+                          onIncrement={this.onServingSizeIncrement}
+                          onDecrement={this.onServingSizeDecrement}
+                          required={true}
+                        />
+                        <InputField
+                          type="select"
+                          label="Serving Units"
+                          value={this.state.servingUnit}
+                          onChange={this.onServingUnitChange}
+                          selectOptions={this.state.servingUnits}
+                          required={true}
+                        />
+                    </div>
                     <MacronutrientGraph food={this.state} />
-                    <InputRow
-                      type="number"
-                      label="Carbs (g)"
-                      value={this.state.carbs}
-                      onChange={this.onCarbsChange}
-                      onIncrement={this.onCarbsIncrement}
-                      onDecrement={this.onCarbsDecrement}
-                      required={true}
-                    />
-                    <InputRow
-                      type="number"
-                      label="Prot (g)"
-                      value={this.state.prot}
-                      onChange={this.onProtChange}
-                      onIncrement={this.onProtIncrement}
-                      onDecrement={this.onProtDecrement}
-                      required={true}
-                    />
-                    <InputRow
-                      type="number"
-                      label="Fat (g)"
-                      value={this.state.fat}
-                      onChange={this.onFatChange}
-                      onIncrement={this.onFatIncrement}
-                      onDecrement={this.onFatDecrement}
-                      required={true}
-                    />
-                    {this.state.err && (
-                      <Notification notification={this.state.err} error={true} />
-                    )}
+                    <div className="FoodForm__largeDeviceInputFieldRow--three">
+                        <InputField
+                          type="number"
+                          label="Carbs (g)"
+                          value={this.state.carbs}
+                          onChange={this.onCarbsChange}
+                          onIncrement={this.onCarbsIncrement}
+                          onDecrement={this.onCarbsDecrement}
+                          required={true}
+                        />
+                        <InputField
+                          type="number"
+                          label="Prot (g)"
+                          value={this.state.prot}
+                          onChange={this.onProtChange}
+                          onIncrement={this.onProtIncrement}
+                          onDecrement={this.onProtDecrement}
+                          required={true}
+                        />
+                        <InputField
+                          type="number"
+                          label="Fat (g)"
+                          value={this.state.fat}
+                          onChange={this.onFatChange}
+                          onIncrement={this.onFatIncrement}
+                          onDecrement={this.onFatDecrement}
+                          required={true}
+                        />
+                    </div>
+                    <MediaQuery maxWidth={1224}>
+                        {this.state.err && (
+                          <Notification notification={this.state.err} error={true} />
+                        )}
+                    </MediaQuery>
                     <LargeButton
                       isSubmit={true}
                       buttonText={this.props.food ? 'Edit Food' : 'Add Food'}

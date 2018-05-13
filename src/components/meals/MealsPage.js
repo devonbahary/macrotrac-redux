@@ -15,9 +15,13 @@ class MealsPage extends React.Component {
     render() {
         return (
             <div>
-                <HeaderNavButton to='/meals/create' />
-                <Time />
-                <MacronutrientGraph />
+                <div className="MealsPage__largeDeviceTimeandMacronutrientGraphContainer">
+                    <Time />
+                    <MacronutrientGraph />
+                </div>
+                <div className="MealsPage__largeDeviceHeaderNavButtonContainer">
+                    <HeaderNavButton to='/meals/create' buttonText="Add Meal" />
+                </div>
                 <FoodsList
                   foods={this.props.meals}
                   onRemove={this.removeMeal}

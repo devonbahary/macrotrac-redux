@@ -1,6 +1,10 @@
-.MacronutrientGraph {
+.MacronutrientGraph,
+.MacronutrientGraph--hidden {
     background: $gray-color;
     height: 8rem;
+}
+
+.MacronutrientGraph {
     box-shadow: 0 0 5px gray;
 }
 
@@ -69,8 +73,8 @@
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     box-shadow: 1px 1px gray;
-    -webkit-transition: width 0.5s ease-in-out;
-    transition: width 0.5s ease-in-out;
+    -webkit-transition: width 0.25s ease-out;
+    transition: width 0.25s ease-out;
 }
 
 .MacronutrientGraph__rowProgressBarFill--cals {
@@ -128,7 +132,7 @@
     box-shadow: 1px 0 gray;
     border-top-right-radius: 2px;
     border-bottom-right-radius: 2px;
-    -webkit-transition: left 0.25s ease-in-out;
-    transition: left 0.25s ease-in-out;
+    -webkit-transition: left 0.25s ease-out;
+    transition: left 0.25s ease-out;
     transform: translateX(-2px);
 }

@@ -18,3 +18,15 @@
 .UserForm__submitButton {
     background: $theme-color;
 }
+
+@media only screen and (min-width: 1224px) {
+    .UserForm__largeDeviceArrangement {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: $grid-gap;
+    }
+
+    .UserForm {
+        padding: 0 $buffer-lg;
+    }
+}

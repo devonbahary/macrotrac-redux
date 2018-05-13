@@ -7,8 +7,9 @@
     margin: 0.5rem 0;
     width: 100%;
     color: white;
-    -webkit-transition: all 0.25s ease-in-out;
-    transition: all 0.25s ease-in-out;
+    -webkit-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+    cursor: pointer;
 }
 
 .LargeButton--submit {
@@ -18,8 +19,26 @@
 
 .LargeButton--submit:disabled {
     background: $disabled-color;
+    cursor: not-allowed;
 }
 
 .LargeButton--warning {
     background: $error-color;
+}
+
+@media only screen and (min-width: 1224px) {
+    .LargeButton,
+    .LargeButton--submit,
+    .LargeButton--warning,
+    .LargeButton--disabled {
+        display: block;
+        width: 60%;
+        margin: 0.5rem auto;
+        border-radius: $border-radius;
+        border: none;
+    }
+
+    .LargeButton--submit {
+        margin-top: 2rem;
+    }
 }

@@ -7,20 +7,17 @@
 .FoodItemTools--two {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 12px;
+    grid-gap: $grid-gap;
 }
 
-.FoodItemTools__servingSizeInputRow {
-    font-size: 1.2rem;
-    background: $light-color;
-    display: grid;
-    grid-template-columns: 40% 60%;
-    padding: 0.5rem 6px;
-    box-shadow: 0 1px 5px gray;
-    margin-bottom: 0.5rem;
-}
+@media only screen and (min-width: 1224px) {
+    .FoodItemTools--one,
+    .FoodItemTools--two {
+        box-shadow: 0 0 5px gray;
+    }
 
-.FoodItemTools__servingSizeInputLabel {
-    line-height: 4rem;
-    opacity: 0.8;
+    .FoodItemTools--two {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
 }

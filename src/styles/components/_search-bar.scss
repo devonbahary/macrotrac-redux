@@ -27,6 +27,10 @@
     opacity: 0.6;
 }
 
+.SearchBar:hover .search-icon {
+    opacity: 0.6;
+}
+
 .SearchBar .search-icon,
 .SearchBar .reset-search-icon {
     position: absolute;
@@ -44,4 +48,32 @@
 
 .SearchBar .reset-search-icon {
     right: 18px;
+    cursor: pointer;
+}
+
+.SearchBar .reset-search-icon:hover {
+    opacity: 0.6;
+}
+
+@media only screen and (min-width: 1224px) {
+    .SearchBar input {
+        opacity: 0.6;
+        width: 30%;
+        -webkit-transition: width 0.25 ease-in-out;
+        transition: width 0.25 ease-in-out;
+    }
+
+    .SearchBar input:focus {
+        opacity: 1;
+        width: 90%;
+    }
+
+    .SearchBar input:hover {
+      box-shadow: 0 0 5px $theme-color;
+    }
+
+    .SearchBar .reset-search-icon {
+        display: none;
+    }
+
 }

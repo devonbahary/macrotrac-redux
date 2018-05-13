@@ -1,4 +1,4 @@
-.FoodItemTool {
+.CommonButton {
     background: $light-color;
     display: grid;
     grid-template-columns: 20% 80%;
@@ -11,11 +11,28 @@
     text-decoration: none;
     -webkit-transition: background-color 0.25s ease-out;
     transition: background-color 0.25s ease-out;
+    cursor: pointer;
 }
 
-.FoodItemTool.active {
+.CommonButton:hover {
+    box-shadow: 0 0 5px $theme-color;
+    color: $theme-color;
+}
+
+.CommonButton.active {
     background: $theme-color;
     color: white;
+}
+
+.CommonButton.active:hover {
+    box-shadow: 0 0 5px white;
+}
+
+.CommonButton.active,
+.CommonButton:hover {
+    .edit-icon {
+        animation: wiggle-hard 0.5s ease-out;
+    }
 
     .remove-icon {
         animation: wiggle-hard 0.5s ease-out;
@@ -26,7 +43,7 @@
     }
 }
 
-.FoodItemTool__icon {
+.CommonButton__icon {
     font-size: 1.8rem;
     line-height: 1rem;
     text-align: center;
@@ -49,7 +66,7 @@
     }
 }
 
-.FoodItemTool__button {
+.CommonButton__button {
     font-size: 1.2rem;
     line-height: 2rem;
     text-align: center;

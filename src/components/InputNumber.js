@@ -1,12 +1,12 @@
 import React from 'react';
 
-const InputNumber = ({ value, onChange, onIncrement, onDecrement, step }) => (
+const InputNumber = ({ value, onChange, onIncrement, onDecrement, step, max = '1000' }) => (
   <div className="InputNumber">
       <div
         className="InputNumber__button--decrement"
         onClick={onDecrement}
       >
-          <span className="ion-minus-round"></span>
+          <span className="InputNumber__icon ion-minus-round"></span>
       </div>
       <input
         type='number'
@@ -15,13 +15,13 @@ const InputNumber = ({ value, onChange, onIncrement, onDecrement, step }) => (
         step='any'
         required
         min='0'
-        max='1000'
+        max={max}
       />
       <div
         className="InputNumber__button--increment"
         onClick={onIncrement}
       >
-          <span className="ion-plus-round"></span>
+          <span className="InputNumber__icon ion-plus-round"></span>
       </div>
   </div>
 );

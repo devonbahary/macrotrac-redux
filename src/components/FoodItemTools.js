@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FoodItemTool from './FoodItemTool';
-import InputRow from './InputRow';
+import MediaQuery from 'react-responsive';
+import CommonButton from './CommonButton';
+import InputField from './InputField';
+import InputNumber from './InputNumber';
 
 const FoodItemTools = ({
   food,
@@ -17,39 +19,57 @@ const FoodItemTools = ({
     if (mealServingSize) {
         return (
             <form>
-                <InputRow
-                  type="number"
-                  label="Serving Size"
-                  value={mealServingSize}
-                  onChange={onServingSizeChange}
-                  onIncrement={onServingSizeIncrement}
-                  onDecrement={onServingSizeDecrement}
-                  required={true}
-                  autoFocus={true}
-                />
-                <div className="FoodItemTools--one">
-                    <FoodItemTool
-                      iconClass="add-icon ion-plus-round"
-                      buttonText="Add Meal"
-                      onClick={onMealSubmit}
-                      food={food}
+                <MediaQuery minWidth={1224}>
+                    <div className="FoodItemTools--two" style={{height: '100%'}}>
+                        <InputNumber
+                          value={mealServingSize}
+                          onChange={onServingSizeChange}
+                          onIncrement={onServingSizeIncrement}
+                          onDecrement={onServingSizeDecrement}
+                        />
+                        <CommonButton
+                          iconClass="add-icon ion-plus-round"
+                          buttonText="Add Meal"
+                          onClick={onMealSubmit}
+                          food={food}
+                        />
+                    </div>
+                </MediaQuery>
+                <MediaQuery maxWidth={1224}>
+                    <InputField
+                      label='Serving Size'
+                      type="number"
+                      value={mealServingSize}
+                      onChange={onServingSizeChange}
+                      onIncrement={onServingSizeIncrement}
+                      onDecrement={onServingSizeDecrement}
+                      step={food.servingSize}
+                      required={true}
+                      autoFocus={true}
                     />
-                </div>
+                    <div className="FoodItemTools--one">
+                        <CommonButton
+                          iconClass="add-icon ion-plus-round"
+                          buttonText="Add Meal"
+                          onClick={onMealSubmit}
+                          food={food}
+                        />
+                    </div>
+                </MediaQuery>
             </form>
-
         );
     } else {
         return (
             <div className={canEdit ? "FoodItemTools--two" : "FoodItemTools--one"}>
                 {canEdit &&
                   <Link to={`/foods/edit/${food.id}`} style={{textDecoration: 'none'}}>
-                      <FoodItemTool
+                      <CommonButton
                         iconClass="edit-icon ion-gear-a"
                         buttonText="Edit"
                       />
                   </Link>
                 }
-                <FoodItemTool
+                <CommonButton
                   iconClass="remove-icon ion-trash-a"
                   buttonText={confirmRemove ? "Confirm" : "Remove"}
                   onClick={onRemove}

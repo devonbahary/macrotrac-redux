@@ -1,0 +1,22 @@
+@media only screen and (min-width: 1224px) {
+    // .MealsPage__largeDeviceMacronutrientGraphContainer {
+    //     margin: 1rem auto;
+    //     width: 80%;
+    // }
+    //
+    .MealsPage__largeDeviceHeaderNavButtonContainer {
+        display: block;
+        position: relative;
+        width: 20%;
+        height: 3rem;
+        margin-left: auto;
+        margin-right: $buffer-lg;
+    }
+
+    .MealsPage__largeDeviceTimeandMacronutrientGraphContainer {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        width: 80%;
+        margin: 2rem auto 0 auto;
+    }
+}

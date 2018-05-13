@@ -1,8 +1,7 @@
 .ClearMealsButton {
     position: relative;
-    // left: calc(60% - 6px);
     float: right;
-    margin-right: 6px;
+    margin-right: 24px;
     height: 4rem;
     width: 40%;
     -webkit-transition: width 0.25s ease-in-out;
@@ -12,6 +11,16 @@
 .ClearMealsButton.active {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 12px;
+    grid-gap: $grid-gap;
     width: 80%;
+}
+
+@media only screen and (min-width: 1224px) {
+    .ClearMealsButton {
+        width: 15%;
+    }
+
+    .ClearMealsButton.active {
+        width: 30%;
+    }
 }

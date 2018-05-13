@@ -1,0 +1,77 @@
+.InputField,
+.InputField--text,
+.InputField--cals,
+.InputField--carbs,
+.InputField--prot,
+.InputField--fat {
+    background: $light-color;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    height: 4rem;
+    padding: 0.5rem 6px;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.InputField,
+.InputField--text {
+    box-shadow: 0 1px 5px gray;
+}
+
+.InputField--text {
+  grid-template-columns: 1fr;
+}
+
+.InputField--cals {
+    box-shadow: 0 1px 1px $cals-color;
+}
+.InputField--carbs {
+    box-shadow: 0 1px 1px $carbs-color;
+}
+
+.InputField--prot {
+    box-shadow: 0 1px 1px $prot-color;
+}
+
+.InputField--fat {
+    box-shadow: 0 1px 1px $fat-color;
+}
+
+.InputField input,
+.InputField--text input,
+.InputField select {
+    background: white;
+    border: none;
+    border-radius: $border-radius;
+    outline: none;
+    padding-left: 6px;
+    -webkit-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+}
+
+.InputField input:focus,
+.InputField input:hover,
+.InputField--text input:focus,
+.InputField--text input:hover,
+.InputField select:focus,
+.InputField select:hover {
+    box-shadow: 0 0 5px $theme-color;
+}
+
+.InputField__label {
+    line-height: 4rem;
+    opacity: 0.8;
+}
+
+@media only screen and (min-width: 1224px) {
+    .InputField {
+        grid-template-columns: 30% 70%;
+    }
+
+    .InputField--cals,
+    .InputField--carbs,
+    .InputField--prot,
+    .InputField--fat {
+        grid-template-columns: 1fr 16rem;
+    }
+}

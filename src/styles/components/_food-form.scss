@@ -2,3 +2,27 @@
     font-size: 1.2rem;
     padding-bottom: 0.5rem;
 }
+
+.FoodForm__largeDeviceArrangement {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: $grid-gap;
+    margin-top: 0.5rem;
+}
+
+@media only screen and (min-width: 1224px) {
+    .FoodForm__largeDeviceInputFieldRow--two,
+    .FoodForm__largeDeviceInputFieldRow--three {
+        display: grid;
+        grid-gap: $grid-gap;
+    }
+
+    .FoodForm__largeDeviceInputFieldRow--two {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .FoodForm__largeDeviceInputFieldRow--three {
+        grid-template-columns: repeat(3, 1fr);
+        margin-top: 0.5rem;
+    }
+}

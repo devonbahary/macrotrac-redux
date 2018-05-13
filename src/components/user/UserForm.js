@@ -1,7 +1,9 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 import InputNumber from '../InputNumber';
-import InputRow from '../InputRow';
+import InputField from '../InputField';
 import LargeButton from '../LargeButton';
+import UserMacrosGraph from './UserMacrosGraph';
 
 class UserForm extends React.Component {
   state = {
@@ -40,7 +42,7 @@ class UserForm extends React.Component {
 
   onCarbsRatioGoalChange = (e) => {
       const carbsRatioGoal = Number(e.target.value);
-      if (carbsRatioGoal >= 0) {
+      if (carbsRatioGoal >= 0 && carbsRatioGoal <= 100) {
           this.setState(() => ({
             carbsRatioGoal,
             hasChanged: true
@@ -58,15 +60,17 @@ class UserForm extends React.Component {
   };
 
   onCarbsRatioGoalIncrement = () => {
-      this.setState((prevState) => ({
-        carbsRatioGoal: prevState.carbsRatioGoal + 1,
-        hasChanged: true
-      }));
+      if (this.state.carbsRatioGoal < 100) {
+          this.setState((prevState) => ({
+            carbsRatioGoal: prevState.carbsRatioGoal + 1,
+            hasChanged: true
+          }));
+      }
   };
 
   onProtRatioGoalChange = (e) => {
       const protRatioGoal = Number(e.target.value);
-      if (protRatioGoal >= 0) {
+      if (protRatioGoal >= 0 && protRatioGoal <= 100) {
           this.setState(() => ({
             protRatioGoal,
             hasChanged: true
@@ -84,15 +88,17 @@ class UserForm extends React.Component {
   };
 
   onProtRatioGoalIncrement = () => {
-      this.setState((prevState) => ({
-        protRatioGoal: prevState.protRatioGoal + 1,
-        hasChanged: true
-      }));
+      if (this.state.protRatioGoal < 100) {
+          this.setState((prevState) => ({
+            protRatioGoal: prevState.protRatioGoal + 1,
+            hasChanged: true
+          }));
+      }
   };
 
   onFatRatioGoalChange = (e) => {
       const fatRatioGoal = Number(e.target.value);
-      if (fatRatioGoal >= 0) {
+      if (fatRatioGoal >= 0 && fatRatioGoal <= 100) {
           this.setState(() => ({
             fatRatioGoal,
             hasChanged: true
@@ -110,10 +116,12 @@ class UserForm extends React.Component {
   };
 
   onFatRatioGoalIncrement = () => {
-      this.setState((prevState) => ({
-        fatRatioGoal: prevState.fatRatioGoal + 1,
-        hasChanged: true
-      }));
+      if (this.state.fatRatioGoal < 100) {
+          this.setState((prevState) => ({
+            fatRatioGoal: prevState.fatRatioGoal + 1,
+            hasChanged: true
+          }));
+      }
   };
 
   onSubmit = (e) => {
@@ -136,7 +144,7 @@ class UserForm extends React.Component {
           <div>
               {this.state.err && <p className="error">{this.state.err}</p>}
               <form onSubmit={this.onSubmit} className="UserForm">
-                  <InputRow
+                  <InputField
                     addClass="--cals"
                     type="number"
                     label="Calorie Goal"
@@ -146,33 +154,43 @@ class UserForm extends React.Component {
                     onDecrement={this.onCalorieGoalDecrement}
                     step="100"
                   />
-                  <InputRow
-                    addClass="--carbs"
-                    type="number"
-                    label="Carbs Ratio (%)"
-                    value={this.state.carbsRatioGoal}
-                    onChange={this.onCarbsRatioGoalChange}
-                    onIncrement={this.onCarbsRatioGoalIncrement}
-                    onDecrement={this.onCarbsRatioGoalDecrement}
-                  />
-                  <InputRow
-                    addClass="--prot"
-                    type="number"
-                    label="Prot Ratio (%)"
-                    value={this.state.protRatioGoal}
-                    onChange={this.onProtRatioGoalChange}
-                    onIncrement={this.onProtRatioGoalIncrement}
-                    onDecrement={this.onProtRatioGoalDecrement}
-                  />
-                  <InputRow
-                    addClass="--fat"
-                    type="number"
-                    label="Fat Ratio (%)"
-                    value={this.state.fatRatioGoal}
-                    onChange={this.onFatRatioGoalChange}
-                    onIncrement={this.onFatRatioGoalIncrement}
-                    onDecrement={this.onFatRatioGoalDecrement}
-                  />
+                  <div className="UserForm__largeDeviceArrangement">
+                      <div>
+                          <InputField
+                            addClass="--carbs"
+                            type="number"
+                            label="Carbs Ratio (%)"
+                            value={this.state.carbsRatioGoal}
+                            onChange={this.onCarbsRatioGoalChange}
+                            onIncrement={this.onCarbsRatioGoalIncrement}
+                            onDecrement={this.onCarbsRatioGoalDecrement}
+                            max="100"
+                          />
+                          <InputField
+                            addClass="--prot"
+                            type="number"
+                            label="Prot Ratio (%)"
+                            value={this.state.protRatioGoal}
+                            onChange={this.onProtRatioGoalChange}
+                            onIncrement={this.onProtRatioGoalIncrement}
+                            onDecrement={this.onProtRatioGoalDecrement}
+                            max="100"
+                          />
+                          <InputField
+                            addClass="--fat"
+                            type="number"
+                            label="Fat Ratio (%)"
+                            value={this.state.fatRatioGoal}
+                            onChange={this.onFatRatioGoalChange}
+                            onIncrement={this.onFatRatioGoalIncrement}
+                            onDecrement={this.onFatRatioGoalDecrement}
+                            max="100"
+                          />
+                      </div>
+                      <MediaQuery minWidth={1224}>
+                          <UserMacrosGraph user={this.state} />
+                      </MediaQuery>
+                  </div>
                   <LargeButton
                     isSubmit={true}
                     onClick={this.onSubmit}

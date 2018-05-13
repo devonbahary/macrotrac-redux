@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import MediaQuery from 'react-responsive';
 import { removeFood } from '../../actions/foods';
 import FoodsList from '../FoodsList';
 import Notification from '../Notification';
@@ -28,13 +29,25 @@ class FoodsPage extends React.Component {
     render() {
         return (
             <div>
-                <HeaderNavButton to={'/foods/create'} />
                 <Notification notification={this.props.notification} />
-                <SearchBar
-                  value={this.state.search}
-                  onChange={this.onSearchChange}
-                  onReset={this.resetSearch}
-                />
+                <MediaQuery minWidth={1224}>
+                    <div className="FoodsPage__largeDeviceSearchBarHeaderNav">
+                        <SearchBar
+                          value={this.state.search}
+                          onChange={this.onSearchChange}
+                          onReset={this.resetSearch}
+                        />
+                        <HeaderNavButton to='/foods/create' buttonText="Add Food" />
+                    </div>
+                </MediaQuery>
+                <MediaQuery maxWidth={1224}>
+                    <SearchBar
+                      value={this.state.search}
+                      onChange={this.onSearchChange}
+                      onReset={this.resetSearch}
+                    />
+                    <HeaderNavButton to='/foods/create' buttonText="Add Food" />
+                </MediaQuery>
                 <FoodsList
                   foods={this.props.foods.filter(food => {
                       const regExp = new RegExp(this.state.search, 'i');

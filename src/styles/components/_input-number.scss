@@ -5,12 +5,14 @@
 
 .InputNumber__button--decrement,
 .InputNumber__button--increment {
-    text-align: center;
+    // text-align: center;
+    position: relative;
     padding: 1rem 0;
-    line-height: 2rem;
     font-size: 1.2rem;
     box-shadow: 1px 1px gray;
     color: gray;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .InputNumber__button--decrement {
@@ -24,13 +26,34 @@
     border-bottom-right-radius: $border-radius;
 }
 
+.InputNumber__button--decrement:hover {
+    background: $dark-color;
+}
+
+.InputNumber__button--increment:hover {
+    background: $gray-color;
+}
+
+.InputNumber__button--decrement:active,
+.InputNumber__button--increment:active {
+    transform: translateY(2px);
+}
+
+.InputNumber__icon {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .InputNumber input[type="number"] {
     text-align: center;
     border-radius: 0;
     box-shadow: 0 1px gray;
     width: 100%;
+    box-sizing: border-box;
 }
 
+.InputNumber input:hover,
 .InputNumber input:focus {
     box-shadow: 0 0 5px $theme-color;
 }

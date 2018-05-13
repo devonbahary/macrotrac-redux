@@ -1,4 +1,5 @@
-.Header {
+.Header--smallDevice,
+.Header--largeDevice {
     position: fixed;
     top: 0; right: 0; left: 0;
     height: 3rem;
@@ -16,4 +17,38 @@
     top: 50%; left: 6px;
     transform: translateY(-50%);
     font-size: 1.6rem;
+}
+
+.Header--largeDevice {
+
+    .Header__link,
+    .Header__link--title {
+        float: left;
+        height: 2rem;
+        margin: 0.5rem 12px;
+        padding: 0 24px;
+        line-height: 2rem;
+        color: white;
+        text-decoration: none;
+        border-radius: $border-radius;
+    }
+
+    .Header__link {
+        font-size: 1.2rem;
+    }
+
+    .Header__link--title {
+        border-right: 1px solid lightgray;
+        font-size: 1.4rem;
+    }
+
+    .Header__link:hover,
+    .Header__link--title:hover {
+        background: rgba(225, 225, 225, 0.2);
+    }
+
+    .Header__link.active-link,
+    .Header__link--title.active-link {
+        background: rgba(225, 225, 225, 0.4);
+    }
 }

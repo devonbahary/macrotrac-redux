@@ -1,7 +1,7 @@
 import React from 'react';
 import InputNumber from './InputNumber';
 
-const InputRow = ({
+const InputField = ({
   addClass,
   type,
   label,
@@ -13,9 +13,10 @@ const InputRow = ({
   selectOptions,
   required,
   autoFocus,
-  step
+  step,
+  max
 }) => (
-  <div className={type === 'text' ? "InputRow--text" : "InputRow" + (addClass ? addClass : '')}>
+  <div className={type === 'text' ? "InputField--text" : "InputField" + (addClass ? addClass : '')}>
       { type === 'text' &&
         <input
           type='text'
@@ -28,7 +29,7 @@ const InputRow = ({
         />
       }
       { type !== 'text' &&
-        <label className="InputRow__label">
+        <label className="InputField__label">
           {label}
         </label>
       }
@@ -41,6 +42,7 @@ const InputRow = ({
           autoFocus={autoFocus}
           required={required}
           step={step}
+          max={max}
         />
       }
       { type === 'select' &&
@@ -60,4 +62,4 @@ const InputRow = ({
   </div>
 );
 
-export default InputRow;
+export default InputField;
