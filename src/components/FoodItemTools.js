@@ -53,6 +53,7 @@ const FoodItemTools = ({
                           buttonText="Add Meal"
                           onClick={onMealSubmit}
                           food={food}
+                          active={true}
                         />
                     </div>
                 </MediaQuery>
