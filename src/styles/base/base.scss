@@ -24,12 +24,13 @@
 .route-leave {
     position: absolute;
     width: 100%; height: 100%;
-    transform: translate(0);
+    opacity: 1;
 }
 
 .route-leave.route-leave-active {
-    transform: translateX(-100vw);
-    transition: all 0.25s ease-in;
+    // transform: translateX(-100vw);
+    opacity: 0;
+    transition: opacity 0.25s ease-in;
 }
 
 @media only screen and (min-width: 1224px) {

@@ -6,8 +6,8 @@ const FoodsList = ({ foods, onEdit, onRemove, canEdit, addMeal }) => (
     <ul className="FoodsList">
         <CSSTransitionGroup
           transitionName="foods"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
+          transitionEnterTimeout={250}
+          transitionLeaveTimeout={250}
         >
             {foods.length > 0 ? (
               foods.map(food => (

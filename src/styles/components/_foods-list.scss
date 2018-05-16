@@ -9,16 +9,16 @@
 
 .foods-enter.foods-enter-active {
     transform: translateX(0);
-    transition: all 0.5s ease-out;
+    transition: all 0.25s ease-out;
 }
 
 .foods-leave {
-
+    opacity: 1;
 }
 
 .foods-leave.foods-leave-active {
-    transform: translateX(100%);
-    transition: all 0.5s ease-out;
+    opacity: 0;
+    transition: opacity 0.25s ease-out;
 }
 
 @media only screen and (min-width: 1224px) {
