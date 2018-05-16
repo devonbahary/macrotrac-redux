@@ -1,4 +1,5 @@
-.CommonButton {
+.CommonButton,
+.CommonButton--disabled {
     background: $light-color;
     display: grid;
     grid-template-columns: 20% 80%;
@@ -12,6 +13,11 @@
     -webkit-transition: background-color 0.25s ease-out;
     transition: background-color 0.25s ease-out;
     cursor: pointer;
+}
+
+.CommonButton--disabled {
+    opacity: 0.6;
+    cursor: auto;
 }
 
 .CommonButton:hover {

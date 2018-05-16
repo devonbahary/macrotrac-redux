@@ -1,8 +1,14 @@
 import React from 'react';
 
-const CommonButton = ({ iconClass, buttonText, onClick, active }) => (
+const CommonButton = ({
+  iconClass,
+  buttonText,
+  onClick,
+  active,
+  disabled
+}) => (
     <div
-      className={active ? "CommonButton active" : "CommonButton"}
+      className={disabled ? "CommonButton--disabled" : active ? "CommonButton active" : "CommonButton"}
       onClick={onClick}
     >
         <div className="CommonButton__icon">
