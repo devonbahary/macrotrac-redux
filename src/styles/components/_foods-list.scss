@@ -3,6 +3,24 @@
     padding-left: 0;
 }
 
+.foods-enter {
+    transform: translateX(-100%);
+}
+
+.foods-enter.foods-enter-active {
+    transform: translateX(0);
+    transition: all 0.5s ease-out;
+}
+
+.foods-leave {
+
+}
+
+.foods-leave.foods-leave-active {
+    transform: translateX(100%);
+    transition: all 0.5s ease-out;
+}
+
 @media only screen and (min-width: 1224px) {
     .FoodsList {
         padding: 0 $buffer-lg;

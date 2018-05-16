@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import SwitchCSSTransitionGroup from 'switch-css-transition-group';
 import { fetchFoods } from '../actions/foods';
 import { fetchMeals } from '../actions/meals';
 import { fetchUser } from '../actions/user';
@@ -26,18 +27,25 @@ class AppRouter extends React.Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Header location={({ location })} />
+                    <Header />
                     <div className="content-window">
-                        <Switch>
-                            <Route path='/' exact component={HomePage} />
-                            <Route path='/foods' exact component={FoodsPage} />
-                            <Route path='/foods/create' exact component={AddFoodPage} />
-                            <Route path='/foods/edit/:id' exact component={EditFoodPage} />
-                            <Route path='/meals' exact component={MealsPage} />
-                            <Route path='/meals/create' exact component={AddMealPage} />
-                            <Route path='/user' exact component={UserPage} />
-                            <Route component={NotFoundPage} />
-                        </Switch>
+                        <Route render={({ history }) => (
+                            <SwitchCSSTransitionGroup
+                              location={history.location}
+                              transitionName="route"
+                              transitionEnterTimeout={250}
+                              transitionLeaveTimeout={250}
+                            >
+                                <Route path='/' exact component={HomePage} key={history.location.key} />
+                                <Route path='/foods' exact component={FoodsPage} key={history.location.key} />
+                                <Route path='/foods/create' exact component={AddFoodPage} key={history.location.key} />
+                                <Route path='/foods/edit/:id' exact component={EditFoodPage} key={history.location.key} />
+                                <Route path='/meals' exact component={MealsPage} key={history.location.key} />
+                                <Route path='/meals/create' exact component={AddMealPage} key={history.location.key} />
+                                <Route path='/user' exact component={UserPage} key={history.location.key} />
+                                <Route component={NotFoundPage} key={history.location.key} />
+                            </SwitchCSSTransitionGroup>
+                        )}/>
                     </div>
                     <MainNav />
                 </div>

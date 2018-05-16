@@ -1,13 +1,14 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 
-const Header = (props) => {
+const Header = withRouter(props => {
     let title;
-    if (props.location.location.pathname.startsWith('/foods/edit')) {
+    if (props.location.pathname.startsWith('/foods/edit')) {
         title = 'Edit Food';
     } else {
-        switch (props.location.location.pathname) {
+        switch (props.location.pathname) {
             case '/meals':
                 title = 'Today';
                 break;
@@ -55,6 +56,6 @@ const Header = (props) => {
             </MediaQuery>
         </div>
     );
-};
+});
 
 export default Header;

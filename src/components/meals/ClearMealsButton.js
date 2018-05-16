@@ -31,6 +31,7 @@ class ClearMealsButton extends React.Component {
                   buttonText={this.props.meals.length > 0 && this.state.confirmClear ? 'Confirm' : 'Clear'}
                   onClick={this.onClick}
                   active={this.props.meals.length > 0 && this.state.confirmClear}
+                  disabled={this.props.meals.length === 0}
                 />
                 {this.props.meals.length > 0 && this.state.confirmClear &&
                   <CommonButton
