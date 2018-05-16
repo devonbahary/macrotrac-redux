@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 
 const MainNav = () => (
-    <MediaQuery maxDeviceWidth={1224}>
+    <MediaQuery maxWidth={1224}>
         <nav className="MainNav">
             <NavLink to="/meals" activeClassName="active-link" className="MainNav__link">
                 <span className="MainNav__linkIcon ion-home"></span>

@@ -32,7 +32,7 @@ const Header = (props) => {
         <div>
             <MediaQuery minWidth={1224}>
                 <header className="Header--largeDevice">
-                    <NavLink to="/" activeClassName="active-link" exact className="Header__link--title">
+                    <NavLink to="/" className="Header__link--title">
                         Macrotrac
                     </NavLink>
                     <NavLink to="/meals" activeClassName="active-link" className="Header__link">

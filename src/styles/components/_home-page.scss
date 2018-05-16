@@ -26,10 +26,7 @@
 
     .HomePage__link {
         display: grid;
-        grid-template-columns: 2rem 1fr;
-        padding: 6px 12px;
-        background: $theme-color;
-        color: white;
+        grid-template-columns: 3rem 1fr;
         border-radius: $border-radius-lg;
         font-size: 1.6rem;
         margin-left: $buffer-sm;
@@ -39,10 +36,19 @@
 
     .HomePage__linkIcon {
         text-align: center;
+        background: $theme-color;
+        padding: 6px 12px;
+        color: white;
+        border-top-left-radius: $border-radius-lg;
+        border-bottom-left-radius: $border-radius-lg;
     }
 
     .HomePage__linkText {
-        padding-left: 6px;
+        padding: 6px 12px;
+        background: $light-color;
+        color: $theme-color;
+        border-top-right-radius: $border-radius-lg;
+        border-bottom-right-radius: $border-radius-lg;
     }
 }
 
