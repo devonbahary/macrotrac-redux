@@ -9,12 +9,17 @@ import userImg from '../../assets/imgs/UserDesktop.png';
 
 const HomePage = (props) => (
     <div className="HomePage">
-        <MediaQuery minWidth={1224}>
-            <div className="HomePage__slide">
-                <div>
-                    <div className="HomePage__captionContainer">
-                        <h1>Nutrition Tracker</h1>
-                        <p>Track your meals throughout the day to track your nutritional goals.</p>
+        <div className="HomePage__slide">
+            <div>
+                <div className="HomePage__captionContainer">
+                    <MediaQuery maxWidth={1224}>
+                        <div className="HomePage__smallDeviceLandingIconContainer">
+                            <span className="HomePage__landingIcon ion-home"></span>
+                        </div>
+                    </MediaQuery>
+                    <h1>Nutrition Tracker</h1>
+                    <p>Track your meals throughout the day to track your nutritional goals.</p>
+                    <MediaQuery minWidth={1224}>
                         <div className="HomePage__buttonContainer">
                             <Link
                               to="/meals"
@@ -27,20 +32,34 @@ const HomePage = (props) => (
                                 />
                             </Link>
                         </div>
-                    </div>
+                    </MediaQuery>
                 </div>
+                <div className="HomePage__downArrow">
+                    <span className="ion-chevron-down"></span>
+                </div>
+            </div>
+            <MediaQuery minWidth={1224}>
                 <div className="HomePage__imgContainer">
                     <img src={`/dist/${mealsImg}`} />
                 </div>
-              </div>
-              <div className="HomePage__slide">
+            </MediaQuery>
+          </div>
+          <div className="HomePage__slide">
+              <MediaQuery minWidth={1224}>
                   <div className="HomePage__imgContainer">
                       <img src={`/dist/${foodsImg}`} />
                   </div>
-                  <div>
-                      <div className="HomePage__captionContainer">
-                          <h1>Personalized</h1>
-                          <p>Keep a list of foods you eat and record their nutrition profile.</p>
+              </MediaQuery>
+              <div>
+                  <div className="HomePage__captionContainer">
+                      <MediaQuery maxWidth={1224}>
+                          <div className="HomePage__smallDeviceLandingIconContainer">
+                              <span className="HomePage__landingIcon ion-fork"></span>
+                          </div>
+                      </MediaQuery>
+                      <h1>Personalized</h1>
+                      <p>Keep a list of foods you eat and record their nutrition profile.</p>
+                      <MediaQuery minWidth={1224}>
                           <div className="HomePage__buttonContainer">
                               <Link
                                 to="/foods"
@@ -53,14 +72,21 @@ const HomePage = (props) => (
                                   />
                               </Link>
                           </div>
-                      </div>
+                      </MediaQuery>
                   </div>
               </div>
-              <div className="HomePage__slide">
-                  <div>
-                      <div className="HomePage__captionContainer">
-                          <h1>Meet Your Goals</h1>
-                          <p>Set your nutritional goals to cater the app to your objectives.</p>
+          </div>
+          <div className="HomePage__slide">
+              <div>
+                  <div className="HomePage__captionContainer">
+                      <MediaQuery maxWidth={1224}>
+                          <div className="HomePage__smallDeviceLandingIconContainer">
+                              <span className="HomePage__landingIcon ion-person"></span>
+                          </div>
+                      </MediaQuery>
+                      <h1>Meet Your Goals</h1>
+                      <p>Set your nutritional goals to cater the app to your objectives.</p>
+                      <MediaQuery minWidth={1224}>
                           <div className="HomePage__buttonContainer">
                               <Link
                                 to="/user"
@@ -73,43 +99,18 @@ const HomePage = (props) => (
                                   />
                               </Link>
                           </div>
-                      </div>
+                      </MediaQuery>
                   </div>
+              </div>
+              <MediaQuery minWidth={1224}>
                   <div className="HomePage__imgContainer">
                       <img src={`/dist/${userImg}`} />
                   </div>
-              </div>
-        </MediaQuery>
-        <MediaQuery maxWidth={1224}>
-            <img src={`/dist/${sampleGif}`} className="HomePage__gif" />
-            <div className="HomePage__overlay"></div>
-            <div className="HomePage__links">
-                <Link to="/meals" className="HomePage__link" style={{textDecoration: 'none'}}>
-                    <div className="HomePage__linkIcon">
-                        <span className="ion-home"></span>
-                    </div>
-                    <div className="HomePage__linkText">
-                      Track Meals
-                    </div>
-                </Link>
-                <Link to="/foods" className="HomePage__link" style={{textDecoration: 'none'}}>
-                    <div className="HomePage__linkIcon">
-                        <span className="ion-fork"></span>
-                    </div>
-                    <div className="HomePage__linkText">
-                      Record Foods
-                    </div>
-                </Link>
-                <Link to="/user" className="HomePage__link" style={{textDecoration: 'none'}}>
-                    <div className="HomePage__linkIcon">
-                        <span className="ion-person"></span>
-                    </div>
-                    <div className="HomePage__linkText">
-                      Set Goals
-                    </div>
-                </Link>
-            </div>
-        </MediaQuery>
+              </MediaQuery>
+              <Link to="/foods" className="HomePage__buttonGetStarted">
+                Get Started
+              </Link>
+          </div>
     </div>
 );
 
