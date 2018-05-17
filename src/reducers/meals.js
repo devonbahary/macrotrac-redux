@@ -9,7 +9,7 @@ export default (prevState = initialMealsState, action) => {
             meals = localStorage.getItem('meals');
             return meals ? JSON.parse(meals) : prevState;
         case 'ADD_MEAL':
-            meals = [ ...prevState, { ...action.meal, id: uuid() } ];
+            meals = [ ...prevState, action.meal ];
             localStorage.setItem('meals', JSON.stringify(meals));
             return meals;
         case 'REMOVE_MEAL':

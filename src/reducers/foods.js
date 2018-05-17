@@ -1,6 +1,3 @@
-import uuid from 'uuid';
-
-
 const initialFoodsState = {
   items: [],
   notification: ''
@@ -16,7 +13,7 @@ export default (prevState = initialFoodsState, action) => {
               notification: items ? `Found ${JSON.parse(items).length} foods.` : 'No food items found.'
             };
         case 'ADD_FOOD':
-            items = [ ...prevState.items, { ...action.food, id: uuid() } ];
+            items = [ ...prevState.items, action.food ];
             localStorage.setItem('foods', JSON.stringify(items));
             return {
               items,

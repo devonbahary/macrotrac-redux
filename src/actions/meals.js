@@ -1,3 +1,4 @@
+import uuid from 'uuid';
 
 // FETCH_MEALS
 export const fetchMeals = () => ({
@@ -7,7 +8,10 @@ export const fetchMeals = () => ({
 // ADD_MEAL
 export const addMeal = (meal) => ({
   type: 'ADD_MEAL',
-  meal
+  meal: {
+    ...meal,
+    id: uuid()
+  }
 });
 
 // REMOVE_MEAL
