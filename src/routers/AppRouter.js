@@ -35,6 +35,8 @@ class AppRouter extends React.Component {
                               transitionName="route"
                               transitionEnterTimeout={250}
                               transitionLeaveTimeout={250}
+                              transitionAppear={true}
+                              transitionAppearTimeout={1000}
                             >
                                 <Route path='/' exact component={HomePage} key={history.location.key} />
                                 <Route path='/foods' exact component={FoodsPage} key={history.location.key} />
