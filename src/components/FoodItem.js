@@ -4,7 +4,7 @@ import { totalCalories } from '../utils/utils';
 import FoodItemTools from './FoodItemTools';
 import MacronutrientGraph from './MacronutrientGraph';
 
-class FoodItem extends React.Component {
+export class FoodItem extends React.Component {
     state = {
       isOpen: false,
       confirmRemove: false,

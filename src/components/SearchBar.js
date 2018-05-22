@@ -1,17 +1,17 @@
 import React from 'react';
 
-const SearchBar = (props) => (
+const SearchBar = ({ value, onChange, onReset }) => (
     <div className="SearchBar">
         <input
           type="text"
-          value={props.value}
-          onChange={props.onChange}
+          value={value}
+          onChange={onChange}
           placeholder="search"
         />
         <span className="search-icon ion-search"></span>
         <span
           className="reset-search-icon ion-close-round"
-          onClick={props.onReset}
+          onClick={onReset}
         ></span>
     </div>
 );

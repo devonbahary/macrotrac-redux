@@ -13,23 +13,23 @@
 .route-enter {
     position: absolute;
     width: 100%; height: 100%;
-    transform: translateX(100vw);
+    opacity: 0;
 }
 
 .route-enter.route-enter-active {
-    transform: translate(0);
-    transition: all 0.25s ease-in;
+    opacity: 1;
+    transition: opacity 0.25s ease-in;
 }
 
 .route-leave {
     position: absolute;
     width: 100%; height: 100%;
-    opacity: 1;
 }
 
 .route-leave.route-leave-active {
+    transform: translateX(-100vw);
     opacity: 0;
-    transition: opacity 0.25s ease-in;
+    transition: all 0.25s ease-out;
 }
 
 .route-appear {

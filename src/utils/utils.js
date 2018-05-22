@@ -67,5 +67,4 @@ export const foodToMeal = (food, servingPortion) => {
         prot: prot % Math.round(prot) > 0 ? parseFloat(prot.toFixed(1)) : prot,
         fat: fat % Math.round(fat) > 0 ? parseFloat(fat.toFixed(1)) : fat
     };
-
 };

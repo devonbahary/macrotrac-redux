@@ -4,7 +4,7 @@ import { updateUser } from '../../actions/user';
 import Notification from '../Notification';
 import UserForm from './UserForm';
 
-class UserPage extends React.Component {
+export class UserPage extends React.Component {
     state = {
       updatedUser: false,
       err: ''
