@@ -1,5 +1,7 @@
-.FoodsPage__largeDeviceSearchBarHeaderNav {
-    display: grid;
-    grid-template-columns: 80% 20%;
-    margin: 0 $buffer-lg;
+@media only screen and (min-width: 1224px) {
+    .FoodsPage__searchBarHeaderNav {
+        display: grid;
+        grid-template-columns: 80% 20%;
+        margin: 0 $buffer-lg;
+    }
 }

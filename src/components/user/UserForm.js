@@ -33,7 +33,7 @@ class UserForm extends React.Component {
       }
   };
 
-  onCalorieGoalInrement = () => {
+  onCalorieGoalIncrement = () => {
       this.setState((prevState) => ({
         calorieGoal: prevState.calorieGoal + 100,
         hasChanged: true
@@ -126,23 +126,24 @@ class UserForm extends React.Component {
 
   onSubmit = (e) => {
       e.preventDefault();
-      if (this.state.carbsRatioGoal + this.state.protRatioGoal + this.state.fatRatioGoal !== 100) {
-          this.props.onError();
-      } else {
-          this.setState(() => ({ hasChanged: false }));
-          this.props.onSubmit({
-            calorieGoal: this.state.calorieGoal,
-            carbsRatioGoal: this.state.carbsRatioGoal,
-            protRatioGoal: this.state.protRatioGoal,
-            fatRatioGoal: this.state.fatRatioGoal
-          });
+      if (this.state.hasChanged) {
+          if (this.state.carbsRatioGoal + this.state.protRatioGoal + this.state.fatRatioGoal !== 100) {
+              this.props.onError();
+          } else {
+              this.setState(() => ({ hasChanged: false }));
+              this.props.onSubmit({
+                calorieGoal: this.state.calorieGoal,
+                carbsRatioGoal: this.state.carbsRatioGoal,
+                protRatioGoal: this.state.protRatioGoal,
+                fatRatioGoal: this.state.fatRatioGoal
+              });
+          }
       }
   };
 
   render() {
       return (
           <div>
-              {this.state.err && <p className="error">{this.state.err}</p>}
               <form onSubmit={this.onSubmit} className="UserForm">
                   <InputField
                     addClass="--cals"
@@ -150,7 +151,7 @@ class UserForm extends React.Component {
                     label="Calorie Goal"
                     value={this.state.calorieGoal}
                     onChange={this.onCalorieGoalChange}
-                    onIncrement={this.onCalorieGoalInrement}
+                    onIncrement={this.onCalorieGoalIncrement}
                     onDecrement={this.onCalorieGoalDecrement}
                     step="100"
                   />

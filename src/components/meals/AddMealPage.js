@@ -5,7 +5,7 @@ import FoodsList from '../FoodsList';
 import Notification from '../Notification';
 import SearchBar from '../SearchBar';
 
-class AddMealPage extends React.Component {
+export class AddMealPage extends React.Component {
     state = {
       search: ''
     };
@@ -25,6 +25,11 @@ class AddMealPage extends React.Component {
     };
 
     render() {
+        const filteredFoods = this.props.foods.filter(food => {
+            const regExp = new RegExp(this.state.search, 'i');
+            return food.name.match(regExp);
+        });
+
         return (
             <div>
                 <Notification notification={this.props.notification} />
@@ -34,10 +39,7 @@ class AddMealPage extends React.Component {
                   onReset={this.resetSearch}
                 />
                 <FoodsList
-                  foods={this.props.foods.filter(food => {
-                      const regExp = new RegExp(this.state.search, 'i');
-                      return food.name.match(regExp);
-                  })}
+                  foods={filteredFoods}
                   addMeal={this.addMeal}
                 />
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InputNumber = ({ value, onChange, onIncrement, onDecrement, step, max = '1000' }) => (
+const InputNumber = ({ value, onChange, onIncrement, onDecrement, max = '1000' }) => (
   <div className="InputNumber">
       <div
         className="InputNumber__button--decrement"

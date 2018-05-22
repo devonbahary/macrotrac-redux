@@ -47,10 +47,12 @@ class FoodForm extends React.Component {
 
     onServingSizeChange = (e) => {
         const servingSize = e.target.value;
-        this.setState(() => ({
-          servingSize,
-          hasChanged: true
-        }));
+        if (!servingSize || servingSize.match(/^\d{0,}(\.\d{0,1})?$/)) {
+            this.setState(() => ({
+              servingSize,
+              hasChanged: true
+            }));
+        }
     };
 
     onServingSizeIncrement = () => {

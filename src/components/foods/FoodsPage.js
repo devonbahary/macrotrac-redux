@@ -8,7 +8,7 @@ import Notification from '../Notification';
 import HeaderNavButton from '../HeaderNavButton';
 import SearchBar from '../SearchBar';
 
-class FoodsPage extends React.Component {
+export class FoodsPage extends React.Component {
     state = {
       search: ''
     };
@@ -27,32 +27,24 @@ class FoodsPage extends React.Component {
     };
 
     render() {
+        const filteredFoods = this.props.foods.filter(food => {
+            const regExp = new RegExp(this.state.search, 'i');
+            return food.name.match(regExp);
+        });
+        
         return (
             <div>
                 <Notification notification={this.props.notification} />
-                <MediaQuery minWidth={1224}>
-                    <div className="FoodsPage__largeDeviceSearchBarHeaderNav">
-                        <SearchBar
-                          value={this.state.search}
-                          onChange={this.onSearchChange}
-                          onReset={this.resetSearch}
-                        />
-                        <HeaderNavButton to='/foods/create' buttonText="Add Food" />
-                    </div>
-                </MediaQuery>
-                <MediaQuery maxWidth={1224}>
+                <div className="FoodsPage__searchBarHeaderNav">
                     <SearchBar
                       value={this.state.search}
                       onChange={this.onSearchChange}
                       onReset={this.resetSearch}
                     />
                     <HeaderNavButton to='/foods/create' buttonText="Add Food" />
-                </MediaQuery>
+                </div>
                 <FoodsList
-                  foods={this.props.foods.filter(food => {
-                      const regExp = new RegExp(this.state.search, 'i');
-                      return food.name.match(regExp);
-                  })}
+                  foods={filteredFoods}
                   canEdit={true}
                   onRemove={this.removeFood}
                 />

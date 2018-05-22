@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Notification = (props) => (
+const Notification = ({
+  error,
+  success,
+  notification
+}) => (
     <div className="Notification">
-        <span className={props.error ? 'error' : props.success ? 'success' : ''}>
-          <span className={props.error ? 'ion-alert-circled' : props.success ? 'ion-checkmark-circled' : ''}></span> {props.notification}
+        <span className={error ? 'error' : success ? 'success' : ''}>
+          <span className={error ? 'ion-alert-circled' : success ? 'ion-checkmark-circled' : ''}></span> {notification}
         </span>
     </div>
 );

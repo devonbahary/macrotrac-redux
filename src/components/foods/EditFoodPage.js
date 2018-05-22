@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { editFood, removeFood } from '../../actions/foods';
 import FoodForm from './FoodForm';
 
-const EditFoodPage = (props) => {
+export const EditFoodPage = (props) => {
     const onSubmit = (food) => {
         props.dispatch(editFood(props.food.id, food));
         props.history.push('/foods');

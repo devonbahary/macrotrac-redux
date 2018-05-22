@@ -2,12 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import CommonButton from './CommonButton';
-import sampleGif from '../../assets/gifs/sample.gif';
 import mealsImg from '../../assets/imgs/MealsDesktop.png';
 import foodsImg from '../../assets/imgs/FoodsDesktop.png';
 import userImg from '../../assets/imgs/UserDesktop.png';
 
-const HomePage = (props) => (
+const HomePage = () => (
     <div className="HomePage">
         <div className="HomePage__slide">
             <div>

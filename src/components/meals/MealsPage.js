@@ -7,7 +7,7 @@ import ClearMealsButton from './ClearMealsButton';
 import Time from './Time';
 import MacronutrientGraph from '../MacronutrientGraph';
 
-class MealsPage extends React.Component {
+export class MealsPage extends React.Component {
     removeMeal = (meal) => {
         this.props.dispatch(removeMeal(meal));
     };

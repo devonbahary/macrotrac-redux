@@ -11,7 +11,7 @@ import {
   fatsAsRatio
 } from '../utils/utils';
 
-const MacronutrientGraph = (props) => {
+export const MacronutrientGraph = (props) => {
     // styles for macronutrient progress bar fill
     const calsBarFillStyle = props.hidden ? {} : { width: Math.min(100, Math.round(props.calsRatio * 100)) + '%' };
     const carbsBarFillStyle = props.hidden ? {} : { width: Math.min(100, Math.round(props.carbsRatio * 100)) + '%' };
@@ -26,8 +26,6 @@ const MacronutrientGraph = (props) => {
     const carbsBarGoalStyle = { width: props.user.carbsRatioGoal + '%' };
     const protBarGoalStyle = { width: props.user.protRatioGoal + '%' };
     const fatBarGoalStyle = { width: props.user.fatRatioGoal + '%' };
-    // styles for macronutrient amounts
-
 
     return (
         <div className={props.hidden ? "MacronutrientGraph--hidden" : "MacronutrientGraph"}>

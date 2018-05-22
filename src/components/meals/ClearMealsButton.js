@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { clearMeals } from '../../actions/meals';
 import CommonButton from '../CommonButton';
 
-class ClearMealsButton extends React.Component {
+export class ClearMealsButton extends React.Component {
     state = {
       confirmClear: false
     };
@@ -24,14 +24,18 @@ class ClearMealsButton extends React.Component {
     }
 
     render() {
+        const buttonText = this.props.meals.length > 0 && this.state.confirmClear ? 'Confirm' : 'Clear';
+        const active = this.props.meals.length > 0 && this.state.confirmClear;
+        const disabled = this.props.meals.length === 0;
+        
         return (
             <div className={this.state.confirmClear ? "ClearMealsButton active" : "ClearMealsButton"}>
                 <CommonButton
                   iconClass="clear-icon ion-trash-b"
-                  buttonText={this.props.meals.length > 0 && this.state.confirmClear ? 'Confirm' : 'Clear'}
+                  buttonText={buttonText}
                   onClick={this.onClick}
-                  active={this.props.meals.length > 0 && this.state.confirmClear}
-                  disabled={this.props.meals.length === 0}
+                  active={active}
+                  disabled={disabled}
                 />
                 {this.props.meals.length > 0 && this.state.confirmClear &&
                   <CommonButton
