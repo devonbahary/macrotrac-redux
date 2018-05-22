@@ -41,6 +41,15 @@
     transition: opacity 1s ease-in;
 }
 
+.route-appear {
+    opacity: 0;
+}
+
+.route-appear.route-appear-active {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
 @media only screen and (min-width: 1224px) {
     .content-window {
         bottom: 0;
