@@ -13,6 +13,16 @@ export class FoodsPage extends React.Component {
       search: ''
     };
 
+    componentDidMount() {
+        this.searchBarHeaderNavNode.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.notification !== this.props.notification) {
+            this.searchBarHeaderNavNode.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+
     onSearchChange = (e) => {
         const search = e.target.value.replace(/[^a-zA-Z ]/, '');
         this.setState(() => ({ search }));
@@ -31,11 +41,14 @@ export class FoodsPage extends React.Component {
             const regExp = new RegExp(this.state.search, 'i');
             return food.name.match(regExp);
         });
-        
+
         return (
             <div>
                 <Notification notification={this.props.notification} />
-                <div className="FoodsPage__searchBarHeaderNav">
+                <div
+                  className="FoodsPage__searchBarHeaderNav"
+                  ref={node => this.searchBarHeaderNavNode = node}
+                >
                     <SearchBar
                       value={this.state.search}
                       onChange={this.onSearchChange}
