@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { removeMeal, clearMeals } from '../../actions/meals';
+import { removeMeal } from '../../actions/meals';
 import FoodsList from '../FoodsList';
 import HeaderNavButton from '../HeaderNavButton';
 import ClearMealsButton from './ClearMealsButton';
@@ -9,7 +9,7 @@ import MacronutrientGraph from '../MacronutrientGraph';
 
 export class MealsPage extends React.Component {
     removeMeal = (meal) => {
-        this.props.dispatch(removeMeal(meal));
+        this.props.removeMeal(meal);
     };
 
     render() {
@@ -37,4 +37,8 @@ const mapStateToProps = (state) => ({
     meals: state.meals
 });
 
-export default connect(mapStateToProps)(MealsPage);
+const mapDispatchToProps = (dispatch) => ({
+  removeMeal: (meal) => dispatch(removeMeal(meal))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MealsPage);

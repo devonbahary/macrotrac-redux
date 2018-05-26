@@ -11,7 +11,7 @@ export class ClearMealsButton extends React.Component {
     onClick = () => {
         if (this.props.meals.length > 0) {
             if (this.state.confirmClear) {
-              this.props.dispatch(clearMeals());
+              this.props.clearMeals();
               this.setState(() => ({ confirmClear: false }));
             } else {
               this.setState(() => ({ confirmClear: true }));
@@ -27,7 +27,7 @@ export class ClearMealsButton extends React.Component {
         const buttonText = this.props.meals.length > 0 && this.state.confirmClear ? 'Confirm' : 'Clear';
         const active = this.props.meals.length > 0 && this.state.confirmClear;
         const disabled = this.props.meals.length === 0;
-        
+
         return (
             <div className={this.state.confirmClear ? "ClearMealsButton active" : "ClearMealsButton"}>
                 <CommonButton
@@ -53,4 +53,8 @@ const mapStateToProps = (state) => ({
   meals: state.meals
 });
 
-export default connect(mapStateToProps)(ClearMealsButton);
+const mapDispatchToProps = (dispatch) => ({
+  clearMeals: () => dispatch(clearMeals())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ClearMealsButton);

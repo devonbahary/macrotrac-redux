@@ -19,7 +19,7 @@ export class UserPage extends React.Component {
           err: '',
           updatedUser: true
         }));
-        this.props.dispatch(updateUser(user));
+        this.props.updateUser(user);
     }
 
     render() {
@@ -48,4 +48,8 @@ const mapStateToProps = (state) => ({
   user: state.user
 });
 
-export default connect(mapStateToProps)(UserPage);
+const mapDispatchToProps = (dispatch) => ({
+  updateUser: (user) => dispatch(updateUser(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);

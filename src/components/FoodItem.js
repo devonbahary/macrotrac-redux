@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { totalCalories } from '../utils/utils';
 import FoodItemTools from './FoodItemTools';
 import MacronutrientGraph from './MacronutrientGraph';
@@ -9,7 +8,7 @@ export class FoodItem extends React.Component {
       isOpen: false,
       confirmRemove: false,
       food: this.props.food,
-      mealServingSize: this.props.addMeal ? this.props.food.servingSize : null
+      mealServingSize: this.props.addMeal ? this.props.food.servingSize : undefined
     };
 
     componentDidUpdate(prevProps, prevState) {
@@ -22,7 +21,7 @@ export class FoodItem extends React.Component {
         this.setState((prevState) => ({
           isOpen: !prevState.isOpen,
           confirmRemove: false,
-          mealServingSize: this.props.addMeal ? this.props.food.servingSize : null
+          mealServingSize: this.props.addMeal ? this.props.food.servingSize : undefined
         }));
         if (this.props.addMeal) {
             this.updateServingSize(this.props.food.servingSize);
@@ -34,31 +33,32 @@ export class FoodItem extends React.Component {
     };
 
     onServingSizeChange = (e) => {
-        const mealServingSize = Number(e.target.value);
-        this.updateServingSize(mealServingSize);
-    };
-
-    onServingSizeIncrement = () => {
-        this.updateServingSize(this.state.mealServingSize + 1);
-    };
-
-    onServingSizeDecrement = () => {
-        if (this.state.mealServingSize > 1) {
-            this.updateServingSize(this.state.mealServingSize - 1);
+        const mealServingSize = e.target.value;
+        if (!mealServingSize || mealServingSize.match(/^\d{0,}(\.\d{0,1})?$/)) {
+            this.updateServingSize(mealServingSize);
         }
     };
 
+    onServingSizeIncrement = () => {
+        this.updateServingSize(Math.min(100, Math.round((Number(this.state.mealServingSize) + 1) * 10) / 10));
+    };
+
+    onServingSizeDecrement = () => {
+        this.updateServingSize(Math.max(0, Math.round((Number(this.state.mealServingSize) - 1) * 10) / 10));
+    };
+
     updateServingSize = (mealServingSize) => {
-        if (mealServingSize) {
+        const servingSize = Number(mealServingSize);
+        if (servingSize >= 0 && servingSize <= 100) {
             this.setState((prevState) => ({
               ...prevState,
               mealServingSize,
               food: {
                 ...prevState.food,
-                servingSize: mealServingSize,
-                carbs: Math.round(prevState.food.carbs * mealServingSize / prevState.food.servingSize * 10) / 10,
-                prot: Math.round(prevState.food.prot * mealServingSize / prevState.food.servingSize * 10) / 10,
-                fat: Math.round(prevState.food.fat * mealServingSize / prevState.food.servingSize * 10) / 10
+                servingSize,
+                carbs: Math.round(this.props.food.carbs * servingSize / this.props.food.servingSize * 10) / 10,
+                prot: Math.round(this.props.food.prot * servingSize / this.props.food.servingSize * 10) / 10,
+                fat: Math.round(this.props.food.fat * servingSize / this.props.food.servingSize * 10) / 10
               }
             }));
         }
@@ -66,7 +66,9 @@ export class FoodItem extends React.Component {
 
     onMealSubmit = (e) => {
         e.preventDefault();
-        this.props.addMeal(this.state.food);
+        if (this.state.mealServingSize > 0) {
+            this.props.addMeal(this.state.food);
+        }
     };
 
     render() {
@@ -132,4 +134,4 @@ export class FoodItem extends React.Component {
     }
 }
 
-export default connect()(FoodItem);
+export default FoodItem;

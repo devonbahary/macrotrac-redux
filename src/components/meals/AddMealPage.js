@@ -20,7 +20,7 @@ export class AddMealPage extends React.Component {
     };
 
     addMeal = (meal) => {
-        this.props.dispatch(addMeal(meal));
+        this.props.addMeal(meal);
         this.props.history.push('/meals');
     };
 
@@ -52,4 +52,8 @@ const mapStateToProps = (state) => ({
   notification: `Found ${state.foods.items.length} foods.`
 });
 
-export default connect(mapStateToProps)(AddMealPage);
+const mapDispatchToProps = (dispatch) => ({
+  addMeal: (meal) => dispatch(addMeal(meal))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddMealPage);

@@ -16,9 +16,9 @@ const FoodItemTools = ({
   onRemove,
   canEdit
 }) => {
-    if (mealServingSize) {
+    if (mealServingSize !== undefined) {
         return (
-            <form>
+            <form onSubmit={onMealSubmit}>
                 <MediaQuery minWidth={1224}>
                     <div className="FoodItemTools--two" style={{height: '100%'}}>
                         <InputNumber
@@ -46,6 +46,7 @@ const FoodItemTools = ({
                       step={food.servingSize}
                       required={true}
                       autoFocus={true}
+                      max='100'
                     />
                     <div className="FoodItemTools--one">
                         <CommonButton
@@ -53,7 +54,8 @@ const FoodItemTools = ({
                           buttonText="Add Meal"
                           onClick={onMealSubmit}
                           food={food}
-                          active={true}
+                          active={!!mealServingSize}
+                          disabled={!mealServingSize}
                         />
                     </div>
                 </MediaQuery>

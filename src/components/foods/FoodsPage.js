@@ -14,11 +14,13 @@ export class FoodsPage extends React.Component {
     };
 
     componentDidMount() {
-        this.searchBarHeaderNavNode.scrollIntoView({ behavior: 'smooth' });
+        if (this.searchBarHeaderNavNode) {
+            this.searchBarHeaderNavNode.scrollIntoView({ behavior: 'smooth' });
+        }
     }
 
     componentDidUpdate(prevProps) {
-        if (prevProps.notification !== this.props.notification) {
+        if (this.searchBarHeaderNavNode && prevProps.notification !== this.props.notification) {
             this.searchBarHeaderNavNode.scrollIntoView({ behavior: 'smooth' });
         }
     }
@@ -33,7 +35,7 @@ export class FoodsPage extends React.Component {
     };
 
     removeFood = (food) => {
-        this.props.dispatch(removeFood(food));
+        this.props.removeFood(food);
     };
 
     render() {
@@ -71,4 +73,8 @@ const mapStateToProps = (state) => ({
   notification: state.foods.notification
 });
 
-export default connect(mapStateToProps)(FoodsPage);
+const mapDispatchToProps = (dispatch) => ({
+  removeFood: (food) => dispatch(removeFood(food))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodsPage);

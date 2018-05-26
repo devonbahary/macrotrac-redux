@@ -5,7 +5,7 @@ import FoodForm from './FoodForm';
 
 export const AddFoodPage = (props) => {
     const onSubmit = (food) => {
-        props.dispatch(addFood(food));
+        props.addFood(food);
         props.history.push('/foods');
     };
 
@@ -16,4 +16,8 @@ export const AddFoodPage = (props) => {
     );
 };
 
-export default connect()(AddFoodPage);
+const mapDispatchToProps = (dispatch) => ({
+  addFood: (food) => dispatch(addFood(food))
+});
+
+export default connect(undefined, mapDispatchToProps)(AddFoodPage);
